@@ -1,9 +1,10 @@
-import React from 'react';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { View, Text, Image } from 'react-native';
-import ProfileIcon from '../icons/profile';
+import * as React from 'react';
+import { View, TouchableOpacity } from 'react-native';
+import BookIcon from '../assets/icons/book';
+import HomeIcon from '../assets/icons/home';
+import ProfileIcon from '../assets/icons/profile';
 
-export default function CustomTab({ state, descriptors, navigation }) {
+export function IconTabs({ state, descriptors, navigation }) {
   return (
     <View style={{ flexDirection: 'row' }}>
       {state.routes.map((route, index) => {
@@ -22,7 +23,6 @@ export default function CustomTab({ state, descriptors, navigation }) {
             type: 'tabPress',
             target: route.key,
           });
-          alert("tabbed")
 
           if (!isFocused && !event.defaultPrevented) {
             navigation.navigate(route.name);
@@ -38,21 +38,18 @@ export default function CustomTab({ state, descriptors, navigation }) {
 
         return (
           <TouchableOpacity
+          key={label[0]+1}
             accessibilityRole="button"
             accessibilityState={isFocused ? { selected: true } : {}}
             accessibilityLabel={options.tabBarAccessibilityLabel}
             testID={options.tabBarTestID}
             onPress={onPress}
             onLongPress={onLongPress}
-            style={{ flex: 1 }}
-            key ={index}
+            style={{ flex: 1, alignItems: "center", paddingVertical: 20, opacity: (isFocused? 1: 0.3)}}
           >
-            <View style={{ flexDirection: "column" }}>
-              <Text style={{ color: isFocused ? '#673ab7' : '#222' }}>
-                {label}
-              </Text>
-              {/* <ProfileIcon /> */}
-            </View>
+            {label === "Home" && <HomeIcon />}
+            {label === "Browse" && <BookIcon />}
+            {label === "Profile" && <ProfileIcon />}
           </TouchableOpacity>
         );
       })}

@@ -25,19 +25,21 @@ const auth = firebase.auth()
 const db = getFirestore(app)
 
 const provider = new GoogleAuthProvider();
-
+provider.setCustomParameters({
+    'login_hint': 'user@example.com'
+});
 
 // Попап для входа в гугл
 const getPopUpSign = async () => {
-    signInWithPopup(auth, provider)
+    auth.signInWithPopup(provider)
         .then((result) => {
             // This gives you a Google Access Token. You can use it to access the Google API.
-            const credential = GoogleAuthProvider.credentialFromResult(result);
-            const token = credential.accessToken;
-            // The signed-in user info.
-            const user = result.user;
-            // IdP data available using getAdditionalUserInfo(result)
-            // ...
+            // const credential = GoogleAuthProvider.credentialFromResult(result);
+            // const token = credential.accessToken;
+            // // The signed-in user info.
+            // const user = result.user;
+            // // IdP data available using getAdditionalUserInfo(result)
+            // // ...
         }).catch((error) => {
             // Handle Errors here.
             const errorCode = error.code;
@@ -104,4 +106,4 @@ const storeUserData = async (value) => {
 }
 
 
-export { auth, app, db, getFirestore, doc, setDoc, getDoc, getUserData, storeUserData, getPopUpSign, isFirstTimeInApp, storeOnboarding}
+export { auth, app, db, getFirestore, doc, setDoc, getDoc, getUserData, storeUserData, getPopUpSign, isFirstTimeInApp, storeOnboarding }

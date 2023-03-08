@@ -9,6 +9,8 @@ import Welcome from '../screens/Welcome';
 import TabNavigator from './TabNavigator';
 import Login from '../screens/Login';
 import Register from '../screens/Register';
+import RegisterEmail from '../screens/RegisterEmail';
+import Settings from '../screens/Settings';
 
 const Stack = createStackNavigator();
 
@@ -18,7 +20,9 @@ export default function RootNavigator() {
       <Stack.Navigator screenOptions={{headerShown:false}}>
         <Stack.Screen name="Welcome" component={Welcome}/>
         <Stack.Screen name="Register" component={Register}/>
+        <Stack.Screen name="RegisterEmail" component={RegisterEmail}/>
         <Stack.Screen name='Login' component={Login}/>
+        <Stack.Screen name='Settings' component={Settings}/>
         <Stack.Screen name='Main' component={TabNavigator}/>
       </Stack.Navigator>
     </NavigationContainer>

@@ -4,8 +4,6 @@ import Svg, { G, Path } from "react-native-svg";
 const LoginPic = (props) => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
-    width={Dimensions.get("screen").width * 6/7}
-    height={Dimensions.get("screen").width * 6/7}
     viewBox="0 0 1290.000000 1241.000000"
     preserveAspectRatio="xMidYMid meet"
     {...props}

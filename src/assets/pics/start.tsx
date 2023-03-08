@@ -4,8 +4,8 @@ import Svg, { G, Path } from "react-native-svg";
 const StartPic = (props) => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
-    width={Dimensions.get("screen").width}
-    height={Dimensions.get("screen").width}
+    width="100%"
+    height="100%"
     viewBox="0 0 1143.000000 956.000000"
     preserveAspectRatio="xMidYMid meet"
     {...props}

@@ -1,12 +1,26 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import SettingsIcon from '../assets/icons/settings';
 import Achievement from '../components/Achievement';
 import AchievementList from '../components/AchievementList';
 import ProfileCard from '../components/ProfileCard';
+import styles from '../misc/Styles';
 
-const Profile = () => {
+export default function Profile({ route, navigation }) {
   return (
-    <View style={styles.container}>
+    <View style={styles.screenContainer}>
+      <View style={styles.headerContainer}>
+        <Text style={styles.headerText}>
+          Профиль
+        </Text>
+        <View style={{ flex: 1 }} />
+        <TouchableOpacity onPress={() => {
+          navigation.navigate("Settings")
+        }}>
+          <SettingsIcon width={30} height={30} style={{ flex: 0 }} />
+        </TouchableOpacity>
+
+      </View>
       {/* <ProfileCard style={styles.profileCard}/>
       <AchievementList style={styles.list}/> */}
       <ProfileCard />
@@ -14,37 +28,3 @@ const Profile = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'white',
-    padding: 5,
-    flexDirection:'column',
-    // justifyContent:'space-between',
-    alignContent: 'flex-start'
-  },
-  // list: {
-  //   marginTop:-1000,
-  //   marginBottom: -1000
-  // },
-  contentContainer: {
-    marginTop: 50,
-    alignItems: 'center',
-    paddingHorizontal: 20,
-  },
-  title: {
-    fontSize: 20,
-    color: '#fff',
-  },
-  name: {
-    fontSize: 20,
-    color: '#fff',
-  }, 
-  username: {
-    fontSize: 20,
-    color: '#fff',
-  },
-});
-
-export default Profile;

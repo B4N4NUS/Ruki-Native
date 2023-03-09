@@ -8,6 +8,7 @@ import {
     GoogleSigninButton,
     statusCodes,
 } from 'react-native-google-signin';
+import IProfile from '../interfaces/IProfile';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -89,6 +90,33 @@ const storeOnboarding = async () => {
 }
 
 // Получения информации о группах пользователя
+const getProfile = async () => {
+    try {
+        const docRef = doc(db, "users", auth.currentUser.email)
+        const docSnap = await getDoc(docRef)
+        if (docSnap.exists()) {
+            return docSnap.data().data
+        } else {
+            console.log("No users")
+            return { data: [] }
+        }
+    } catch (e) {
+        alert(e.message)
+    }
+}
+
+// Сохранение групп пользователя
+const storeProfile = async (value: IProfile) => {
+    try {
+        const docRef = await setDoc(doc(db, "users", auth.currentUser.email), {
+            data: value
+        })
+    } catch (e) {
+        alert(e.message)
+    }
+}
+
+// Получения информации о группах пользователя
 const getUserData = async () => {
     try {
         const docRef = doc(db, "users", auth.currentUser.email)
@@ -116,4 +144,4 @@ const storeUserData = async (value) => {
 }
 
 
-export { auth, app, db, getFirestore, doc, setDoc, getDoc, getUserData, storeUserData, getPopUpSign, isFirstTimeInApp, storeOnboarding }
+export { auth, app, db,getProfile, storeProfile, getFirestore, doc, setDoc, getDoc, getUserData, storeUserData, getPopUpSign, isFirstTimeInApp, storeOnboarding }

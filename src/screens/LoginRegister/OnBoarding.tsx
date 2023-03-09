@@ -1,18 +1,17 @@
 import { View, Text, TextInput } from "react-native";
 import * as React from 'react';
-import styles from "../misc/Styles";
-import LoginPic from "../assets/pics/login";
-import StartPic from "../assets/pics/start";
 import { TouchableOpacity, ScrollView } from "react-native";
-import { FancyTextInput } from "../components/FancyTextInput";
-import WorkIcon from "../assets/pics/work";
-import GlobalIcon from "../assets/pics/global";
+import LoginPic from "../../assets/pics/login";
+import StartPic from "../../assets/pics/start";
+import WorkIcon from "../../assets/pics/work";
+import GlobalIcon from "../../assets/pics/global";
+import styles from "../../misc/Styles";
 
 export default function OnBoarding({ route, navigation }) {
-    const images = [<StartPic width="80%"/>,
+    const images = [<StartPic width="80%" />,
     <LoginPic width="80%" />,
-    <WorkIcon width="80%"/>,
-    <GlobalIcon width="80%"/>]
+    <WorkIcon width="80%" />,
+    <GlobalIcon width="80%" />]
     const headers = ["Тематические уроки",
         "Общение с инвалидами",
         "Розыгрыш аймака",
@@ -40,8 +39,10 @@ export default function OnBoarding({ route, navigation }) {
 
     return <View style={styles.screenContainer}>
         <ScrollView style={{ marginHorizontal: 30, flex: 1, height: "100%", }}
-        showsVerticalScrollIndicator={false}>
-            {images[page]}
+            showsVerticalScrollIndicator={false}>
+            <View style={[{ flex: 1, justifyContent: "center", alignItems: "center" }]}>
+                {images[page]}
+            </View>
             <Text style={styles.littleText}>
                 {(page + 1) + "/" + images.length}
             </Text>
@@ -49,12 +50,12 @@ export default function OnBoarding({ route, navigation }) {
                 {headers[page]}
             </Text>
             {/* <View style={{ height:1000, backgroundColor:"red"}}> */}
-                <Text style={{ flex: 1, flexWrap: 'wrap' }}>
-                    {texts[page]}
-                </Text>
+            <Text style={{ flex: 1, flexWrap: 'wrap' }}>
+                {texts[page]}
+            </Text>
             {/* </View> */}
         </ScrollView>
-        <View style={{ flex: 0.3, marginHorizontal: 30, }}>
+        <View style={{ flex: 0.3, marginHorizontal: 30, justifyContent: "flex-end" }}>
             <TouchableOpacity style={[styles.textButton, { marginHorizontal: 0, marginTop: 40 }]}
                 onPress={() => {
                     next()
@@ -64,7 +65,7 @@ export default function OnBoarding({ route, navigation }) {
                     Далее
                 </Text>
             </TouchableOpacity>
-            <TouchableOpacity style={[styles.textWhiteButton, { marginHorizontal: 0 }]}
+            <TouchableOpacity style={[styles.textWhiteButton, { marginHorizontal: 0, marginBottom: 30 }]}
                 onPress={() => {
                     skip()
                 }}

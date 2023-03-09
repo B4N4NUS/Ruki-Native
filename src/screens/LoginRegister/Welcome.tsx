@@ -1,16 +1,20 @@
 import { View, Text, Image, TouchableOpacity } from "react-native";
-import LoginPic from "../assets/pics/login";
-import StartPic from "../assets/pics/start";
-import styles from "../misc/Styles";
+import { Dimensions } from "react-native";
+import LoginPic from "../../assets/pics/login";
+import styles from "../../misc/Styles";
 
 export default function Welcome({ route, navigation }) {
     return (
         <View style={styles.screenContainer}>
             <View style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
-                <Text style={[{ flex: 0.3 }, styles.bigBlackText]}>
-                    Добро {"\n"}пожаловать!
-                </Text>
-                <LoginPic width={400} height={400} style={{ flex: 1 }} />
+                <View style={[{ flex: 0.6, justifyContent:"center"}]}>
+                    <Text style={[styles.bigBlackText]}>
+                        Добро {"\n"}пожаловать!
+                    </Text>
+                </View>
+                <View style={[{ flex: 1, justifyContent:"center",alignItems:"center" }]}>
+                    <LoginPic height={"100%"} />
+                </View>
             </View>
             <View style={{ flex: 0 }}>
                 <TouchableOpacity style={styles.textButton}
@@ -22,7 +26,7 @@ export default function Welcome({ route, navigation }) {
                         Войти
                     </Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={[styles.textButton, {marginBottom:40,}]}
+                <TouchableOpacity style={[styles.textButton, { marginBottom: 40, }]}
                     onPress={() => {
                         navigation.navigate("Register")
                     }}

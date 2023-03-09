@@ -4,9 +4,27 @@ import SettingsIcon from '../assets/icons/settings';
 import Achievement from '../components/Achievement';
 import AchievementList from '../components/AchievementList';
 import ProfileCard from '../components/ProfileCard';
+import IProfile from '../interfaces/IProfile';
+import { auth, getProfile } from '../misc/Firebase';
 import styles from '../misc/Styles';
 
 export default function Profile({ route, navigation }) {
+  const [user, setUser] = React.useState<IProfile | null>(null)
+
+
+  React.useEffect(() => {
+    update()
+  }, [auth.currentUser.email]) 
+
+
+  const update = () => {
+    getProfile().then((response) => {
+      setUser(response)
+      console.log("got user profile: ")
+      console.log(response)
+    })
+  }
+
   return (
     <View style={styles.screenContainer}>
       <View style={styles.headerContainer}>
@@ -23,7 +41,7 @@ export default function Profile({ route, navigation }) {
       </View>
       {/* <ProfileCard style={styles.profileCard}/>
       <AchievementList style={styles.list}/> */}
-      <ProfileCard />
+      <ProfileCard profile={user}/>
       <AchievementList />
     </View>
   );

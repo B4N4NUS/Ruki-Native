@@ -1,17 +1,16 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
 import Achievement from '../components/Achievement';
 import AchievementList from '../components/AchievementList';
+import IProfile from '../interfaces/IProfile';
 
-export default function ProfileCard() {
+export default function ProfileCard({ profile }: { profile: IProfile }) {
   return (
     <View style={styles.container}>
-      <View style={styles.contentContainer}>
-        {/* <Image style={styles.avatar} source={require('../images/profile_icon.png')}/> */}
-        <View style={styles.userinfo}>
-        <Text style={styles.name}>Имя Фамилия</Text>
-        <Text style={styles.username}>Юзернейм</Text>
-        </View>
+      <Image style={styles.avatar} source={profile?.imageUri ? { uri: profile.imageUri } : require("../assets/images/profile_icon.png")} />
+      <View style={styles.userinfo}>
+        <Text style={styles.name}>{profile ? profile.name : "Абиба Абобов"}</Text>
+        <Text style={styles.username}>{profile ? profile.username : "@biba"}</Text>
       </View>
     </View>
   );
@@ -19,20 +18,18 @@ export default function ProfileCard() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: 'white',
+    flex: 0,
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    flexDirection: 'row',
+    minHeight: 140,
   },
-  userinfo:{
+  userinfo: {
     flexDirection: 'column',
     paddingLeft: 20,
     // justifyContent: 'center',
   },
-  contentContainer: {
-    marginTop: 50,
-    alignItems: 'center',
-    paddingHorizontal: 20,
-    flexDirection: 'row',
-  },
+
   title: {
     fontSize: 20,
     color: 'black',
@@ -42,13 +39,17 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 20,
     color: 'black',
-  }, 
+  },
   username: {
     // font: 'sans-serif',
     fontSize: 15,
     color: 'black',
   },
   avatar: {
-    borderRadius:70
+    borderRadius: 70,
+    width:120,
+    height:120,
+    borderWidth: 1,
+    borderColor: "black"
   }
 });

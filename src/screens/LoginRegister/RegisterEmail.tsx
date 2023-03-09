@@ -1,10 +1,9 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import * as React from 'react';
-import LoginPic from "../assets/pics/login";
-import styles from "../misc/Styles";
-import StartPic from "../assets/pics/start";
-import { FancyTextInput } from "../components/FancyTextInput";
-import { auth } from "../misc/Firebase";
+import LoginPic from "../../assets/pics/login";
+import { FancyTextInput } from "../../components/FancyTextInput";
+import { auth, storeProfile } from "../../misc/Firebase";
+import styles from "../../misc/Styles";
 
 export default function RegisterEmail({ route, navigation }) {
     const [name, setName] = React.useState("")
@@ -15,16 +14,28 @@ export default function RegisterEmail({ route, navigation }) {
         auth.createUserWithEmailAndPassword(login, pass).then(userCredentials => {
             const user = userCredentials.user
             console.log("Registered with: " + user.email)
-            navigation.navigate("OnBoarding")
+            storeProfile({
+                name: name,
+                imageUri: "",
+                email: login,
+                phone: "",
+                username: "user6t873845",
+                pushClasses: false,
+                pushUpdates: false,
+            }).then(() => navigation.navigate("OnBoarding"))
         }).catch(error => alert("Network Error"))
     }
 
     return (
         <View style={styles.screenContainer}>
+
             <View style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
-                <LoginPic style={{ flex: 1 }} />
+                <View style={[{ flex: 1, justifyContent: "center", alignItems: "center" }]}>
+                    <LoginPic height={"100%"} />
+                </View>
             </View>
-            <View style={{ flex: 1, marginHorizontal: 30, }}>
+
+            <View style={{ flex: 1, marginHorizontal: 30, justifyContent: "flex-end" }}>
                 <Text style={[styles.bigBlackText, { textAlign: "left", marginBottom: 30, }]}>
                     Регистрация
                 </Text>
@@ -41,11 +52,11 @@ export default function RegisterEmail({ route, navigation }) {
                 <Text style={styles.littleText}>
                     Пароль
                 </Text>
-                <FancyTextInput style={styles.wideInput} onChangeText={(text) => { setPass(text) }}  />
+                <FancyTextInput style={styles.wideInput} onChangeText={(text) => { setPass(text) }} />
 
 
 
-                <TouchableOpacity style={[styles.textButton, { marginHorizontal: 0, marginTop: 40 }]}
+                <TouchableOpacity style={[styles.textButton, { marginHorizontal: 0, marginTop: 40, }]}
                     onPress={() => {
                         handleSignUp()
                         // navigation.navigate("Main")

@@ -5,13 +5,13 @@ import Browse from '../screens/Browse';
 import Home from '../screens/Home';
 import Profile from '../screens/Profile';
 import { createStackNavigator } from '@react-navigation/stack';
-import Welcome from '../screens/Welcome';
 import TabNavigator from './TabNavigator';
-import Login from '../screens/Login';
-import Register from '../screens/Register';
-import RegisterEmail from '../screens/RegisterEmail';
+import Login from '../screens/LoginRegister/Login';
 import Settings from '../screens/Settings';
-import OnBoarding from '../screens/OnBoarding';
+import OnBoarding from '../screens/LoginRegister/OnBoarding';
+import Register from '../screens/LoginRegister/Register';
+import RegisterEmail from '../screens/LoginRegister/RegisterEmail';
+import Welcome from '../screens/LoginRegister/Welcome';
 
 const Stack = createStackNavigator();
 

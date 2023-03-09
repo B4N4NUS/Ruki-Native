@@ -5,6 +5,7 @@ const LoginPic = (props) => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 1290.000000 1241.000000"
+    style={{aspectRatio: "1/1"}}
     preserveAspectRatio="xMidYMid meet"
     {...props}
   >

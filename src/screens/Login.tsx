@@ -9,10 +9,7 @@ import { FancyTextInput } from "../components/FancyTextInput";
 export default function Login({ route, navigation }) {
     return <View style={styles.screenContainer}>
         <View style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
-            <Text style={[{ flex: 0.3 }, styles.bigBlackText]}>
-                Добро {"\n"}пожаловать!
-            </Text>
-            <StartPic width="80%" style={{ flex: 1 }} />
+            <StartPic style={{ flex: 1 }} />
         </View>
         <View style={{ flex: 1, marginHorizontal: 30, }}>
             <Text style={[styles.bigBlackText, { textAlign: "left", marginBottom: 30, }]}>

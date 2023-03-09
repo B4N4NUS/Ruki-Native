@@ -2,7 +2,12 @@
 import firebase from 'firebase/compat/app'
 import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore"
 import 'firebase/compat/auth'
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { GoogleAuthProvider, signInWithPopup, signInWithRedirect } from "firebase/auth";
+import {
+    GoogleSignin,
+    GoogleSigninButton,
+    statusCodes,
+} from 'react-native-google-signin';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -29,27 +34,32 @@ provider.setCustomParameters({
     'login_hint': 'user@example.com'
 });
 
+const webClientId = "165462279786-to4kbtug965ofjulrk6k7qj78g6nkq45.apps.googleusercontent.com"
+const webClientSecret = "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"
+
 // Попап для входа в гугл
 const getPopUpSign = async () => {
-    auth.signInWithPopup(provider)
-        .then((result) => {
-            // This gives you a Google Access Token. You can use it to access the Google API.
-            // const credential = GoogleAuthProvider.credentialFromResult(result);
-            // const token = credential.accessToken;
-            // // The signed-in user info.
-            // const user = result.user;
-            // // IdP data available using getAdditionalUserInfo(result)
-            // // ...
-        }).catch((error) => {
-            // Handle Errors here.
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            // The email of the user's account used.
-            const email = error.customData.email;
-            // The AuthCredential type that was used.
-            const credential = GoogleAuthProvider.credentialFromError(error);
-            // ...
-        });
+    alert("Google")
+    signInWithRedirect(auth, provider)
+    // auth.signInWithPopup(provider)
+    //     .then((result) => {
+    //         // This gives you a Google Access Token. You can use it to access the Google API.
+    //         // const credential = GoogleAuthProvider.credentialFromResult(result);
+    //         // const token = credential.accessToken;
+    //         // // The signed-in user info.
+    //         // const user = result.user;
+    //         // // IdP data available using getAdditionalUserInfo(result)
+    //         // // ...
+    //     }).catch((error) => {
+    //         // Handle Errors here.
+    //         const errorCode = error.code;
+    //         const errorMessage = error.message;
+    //         // The email of the user's account used.
+    //         const email = error.customData.email;
+    //         // The AuthCredential type that was used.
+    //         const credential = GoogleAuthProvider.credentialFromError(error);
+    //         // ...
+    //     });
 }
 
 // Проверка на показ онбординга

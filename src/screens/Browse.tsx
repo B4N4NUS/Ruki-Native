@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import List from "../components/List";
 import SearchBar from "../components/SearchBar";
+import styles from "../misc/Styles";
 
 const Browse = () => {
   const [searchPhrase, setSearchPhrase] = useState("");
@@ -27,8 +28,8 @@ const Browse = () => {
   }, []);
 
   return (
-    <SafeAreaView style={styles.root}>
-      {!clicked && <Text style={styles.title}>Programming Languages</Text>}
+    <SafeAreaView style={styles.screenContainer}>
+      {!clicked && <Text style={styless.title}>Programming Languages</Text>}
       <SearchBar
         searchPhrase={searchPhrase}
         setSearchPhrase={setSearchPhrase}
@@ -50,7 +51,7 @@ const Browse = () => {
 
 export default Browse;
 
-const styles = StyleSheet.create({
+const styless = StyleSheet.create({
   root: {
     justifyContent: "center",
     alignItems: "center",

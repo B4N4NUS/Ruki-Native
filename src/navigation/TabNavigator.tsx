@@ -8,7 +8,7 @@ export default function TabNavigator() {
     const Tab = createBottomTabNavigator();
     
     return (
-        < Tab.Navigator screenOptions={{ headerShown: false }} tabBar={(props) => <IconTabs {...props} />}>
+        < Tab.Navigator screenOptions={{ headerShown: false, }}sceneContainerStyle={{backgroundColor:"white"}}  tabBar={(props) => <IconTabs {...props} />}>
             <Tab.Screen name="Home" component={Home} />
             <Tab.Screen name="Browse" component={Browse} />
             <Tab.Screen name="Profile" component={Profile} />

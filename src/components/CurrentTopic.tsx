@@ -1,44 +1,51 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
-import Achievement from './Achievement';
-import AchievementList from './AchievementList';
+import { View, Text, StyleSheet, Image, Button, TouchableOpacity } from 'react-native';
+import GlobalIcon from "../assets/pics/global";
+import styles from '../misc/Styles';
 
 const CurrentTopic = () => {
   return (
-    <View style={styles.container}>
-     <Text style={styles.title}>Текущая тема</Text>
-      <Text style={styles.title}>Путешествия</Text>
-      <View style={styles.fixedRatio}>
-            <Text style={{}}>Урок 5/12</Text>
-            <Text>Продолжить обучение</Text>
+    <View style={styless.container}>
+      <Text style={styless.title}>Текущая тема</Text>
+      <Text style={styless.name}>Путешествия</Text>
+      <View style={styless.fixedRatio}>
+        <Text style={styless.counter}>Урок 5</Text>
+        <View style={[{ flex: 1, justifyContent: "center", alignItems: "center" }]}>
+          <GlobalIcon height={"100%"} width={'100%'} alignSelf={"center"} />
         </View>
+
+        <TouchableOpacity style={styles.textButton}>
+          <Text style={styles.textButtonText}>Продолжить обучение</Text>
+        </TouchableOpacity>
+      </View>
 
     </View>
   );
 };
 
-const styles = StyleSheet.create({
+const styless = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 2,
     flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'space-around',
     backgroundColor: 'white',
-    padding: 5
+    justifyContent: 'space-around',
+    // width: '100%',
+    // padding: 10,
+    // paddingTop: 20,
+    alignItems: 'stretch'
   },
   fixedRatio: {
     backgroundColor: '#f0f2f0',
     flex: 1,
-    aspectRatio: 36 / 10,
+    position: 'relative',
+    // aspectRatio: 7 / 5,
+    width: "100%",
     borderRadius: 20,
-      padding: 10,
-      justifyContent: 'space-around',
-      paddingLeft:10,
-  },
-  userinfo:{
-    flexDirection: 'column',
-    paddingLeft: 20,
-    // justifyContent: 'center',
+    // padding: 20,
+    justifyContent: 'space-around',
+    marginTop: 10,
+    marginHorizontal: 20,
+    alignSelf: 'center'
   },
   contentContainer: {
     marginTop: 50,
@@ -47,22 +54,32 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   title: {
-    fontSize: 20,
-    color: 'black',
+    fontSize: 15,
+    color: 'gray',
   },
   name: {
-    // font: 'sans-serif',
-    fontWeight: 'bold',
-    fontSize: 20,
-    color: 'black',
-  }, 
-  username: {
-    // font: 'sans-serif',
-    fontSize: 15,
-    color: 'black',
+    fontSize: 27,
+    fontWeight: 'bold'
+
   },
-  avatar: {
-    borderRadius:70
+  counter: {
+    fontSize: 16,
+    position: "absolute",
+    top:15,
+    left:20,
+    fontWeight: 'bold'
+  },
+  appButtonContainer: {
+    elevation: 8,
+    backgroundColor: "black",
+    borderRadius: 15,
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+  },
+  appButtonText: {
+    fontSize: 16,
+    color: "#fff",
+    alignSelf: "center",
   }
 });
 

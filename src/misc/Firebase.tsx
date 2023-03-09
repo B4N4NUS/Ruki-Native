@@ -17,14 +17,7 @@ const firebaseConfig = {
     appId: "1:165462279786:web:9ca170d167f9f424912c13"
 };
 
-const storage = getStorage()
 
-export async function uploadToStorage(file, setLoading) {
-    const fileRef = ref(storage,"userPics/"+ auth.currentUser.uid + ".png")
-    setLoading(true)
-    const snapshot = await uploadBytes(fileRef, file)
-    setLoading(false)
-}
 
 // Initialize Firebase
 let app
@@ -147,6 +140,15 @@ const storeUserData = async (value) => {
     } catch (e) {
         alert(e.message)
     }
+}
+
+const storage = getStorage()
+
+export async function uploadToStorage(file, setLoading) {
+    const fileRef = ref(storage,"userPics/"+ auth.currentUser.uid + ".png")
+    setLoading(true)
+    const snapshot = await uploadBytes(fileRef, file)
+    setLoading(false)
 }
 
 

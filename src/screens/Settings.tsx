@@ -46,7 +46,9 @@ export default function Settings({ route, navigation }) {
                         Выход
                     </Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={[styles.settingsButton, { opacity: 0.5 }]}>
+                <TouchableOpacity style={[styles.settingsButton, { opacity: 0.5 }]} onPress={() => {
+                    
+                }}>
                     <Text>
                         Удалить аккаунт
                     </Text>

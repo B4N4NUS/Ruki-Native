@@ -1,4 +1,4 @@
-import { View, Text, TextInput } from "react-native";
+import { View, Text, TextInput, SafeAreaView } from "react-native";
 import * as React from 'react';
 import styles from "../../misc/Styles";
 import StartPic from "../../assets/pics/start";
@@ -27,27 +27,27 @@ export default function Login({ route, navigation }) {
         }).catch(error => alert(error.message))
     }
 
-    return <View style={styles.screenContainer}>
+    return <SafeAreaView style={styles.screenContainer}>
         <View style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
-            <View style={[{ flex: 1, justifyContent: "center",alignItems:"center" }]}>
+            <View style={[{ flex: 1, justifyContent: "center", alignItems: "center" }]}>
                 <StartPic height={"100%"} />
             </View>
         </View>
 
-        <View style={{ flex: 1, marginHorizontal: 30,justifyContent:"flex-end" }}>
+        <View style={{ flex: 1, marginHorizontal: 30, justifyContent: "flex-end" }}>
             <Text style={[styles.bigBlackText, { textAlign: "left", marginBottom: 30, }]}>
                 Вход
             </Text>
             <Text style={styles.littleText}>
                 Эл. почта
             </Text>
-            <FancyTextInput style={styles.wideInput}  onChangeText={(text) => { setLogin(text) }}/>
+            <FancyTextInput style={styles.wideInput} onChangeText={(text) => { setLogin(text) }} />
 
 
             <Text style={styles.littleText}>
                 Пароль
             </Text>
-            <FancyTextInput style={styles.wideInput}  onChangeText={(text) => { setPass(text) }}/>
+            <FancyTextInput style={styles.wideInput} onChangeText={(text) => { setPass(text) }} />
 
 
 
@@ -60,11 +60,11 @@ export default function Login({ route, navigation }) {
                     Войти
                 </Text>
             </TouchableOpacity>
-            <TouchableOpacity style={[styles.textWhiteButton, { marginHorizontal: 0,marginBottom: 40,  }]}>
+            <TouchableOpacity style={[styles.textWhiteButton, { marginHorizontal: 0, marginBottom: 40, }]}>
                 <Text style={[styles.textButtonText, { color: "black" }]}>
                     Войти через Google
                 </Text>
             </TouchableOpacity>
         </View>
-    </View>
+    </SafeAreaView>
 }

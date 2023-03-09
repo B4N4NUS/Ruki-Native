@@ -1,6 +1,6 @@
 import { useFocusEffect, useIsFocused } from '@react-navigation/native';
 import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, SafeAreaView } from 'react-native';
 import SettingsIcon from '../assets/icons/settings';
 import Achievement from '../components/Achievement';
 import AchievementList from '../components/AchievementList';
@@ -33,7 +33,7 @@ export default function Profile({ route, navigation }) {
   }
 
   return (
-    <View style={styles.screenContainer}>
+    <SafeAreaView style={styles.screenContainer}>
       <View style={styles.headerContainer}>
         <Text style={styles.headerText}>
           Профиль
@@ -50,6 +50,6 @@ export default function Profile({ route, navigation }) {
       <AchievementList style={styles.list}/> */}
       <ProfileCard profile={user}/>
       <AchievementList />
-    </View>
+    </SafeAreaView>
   );
 };

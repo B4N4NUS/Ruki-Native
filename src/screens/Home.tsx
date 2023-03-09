@@ -7,6 +7,7 @@ import {
   Image,
   Dimensions,
   ScrollView,
+  SafeAreaView,
 } from 'react-native';
 import CurrentTopic from '../components/CurrentTopic';
 import LessonList from '../components/LessonList';
@@ -36,10 +37,10 @@ const ITEM_HEIGHT = ITEM_WIDTH * 0.9;
 const Home = () => {
     const tabBarheight = useBottomTabBarHeight();
     return (
-      <View style={[styles.screenContainer,{marginHorizontal:20}]}>
+      <SafeAreaView style={[styles.screenContainer,{marginHorizontal:20}]}>
           <CurrentTopic/>
           <LessonList/>
-      </View>
+      </SafeAreaView>
     );
   };
   

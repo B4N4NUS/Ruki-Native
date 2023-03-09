@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, SafeAreaView } from "react-native";
 import * as React from 'react';
 import LoginPic from "../../assets/pics/login";
 import { FancyTextInput } from "../../components/FancyTextInput";
@@ -27,7 +27,7 @@ export default function RegisterEmail({ route, navigation }) {
     }
 
     return (
-        <View style={styles.screenContainer}>
+        <SafeAreaView style={styles.screenContainer}>
 
             <View style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
                 <View style={[{ flex: 1, justifyContent: "center", alignItems: "center" }]}>
@@ -67,6 +67,6 @@ export default function RegisterEmail({ route, navigation }) {
                     </Text>
                 </TouchableOpacity>
             </View>
-        </View>
+        </SafeAreaView>
     )
 }

@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, ScrollView } from "react-native";
+import { View, Text, TouchableOpacity, ScrollView, SafeAreaView } from "react-native";
 import * as React from 'react';
 import LoginPic from "../assets/pics/login";
 import styles from "../misc/Styles";
@@ -7,7 +7,7 @@ export default function Settings({ route, navigation }) {
     // const { options } = route.params
 
     return (
-        <View style={styles.screenContainer}>
+        <SafeAreaView style={styles.screenContainer}>
             <View style={styles.headerContainer}>
                 <Text style={styles.headerText}>
                     Настройки
@@ -43,6 +43,6 @@ export default function Settings({ route, navigation }) {
                     </Text>
                 </TouchableOpacity>
             </ScrollView>
-        </View>
+        </SafeAreaView>
     )
 }

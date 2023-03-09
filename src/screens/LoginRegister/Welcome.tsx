@@ -1,11 +1,11 @@
-import { View, Text, Image, TouchableOpacity } from "react-native";
+import { View, Text, Image, TouchableOpacity, SafeAreaView } from "react-native";
 import { Dimensions } from "react-native";
 import LoginPic from "../../assets/pics/login";
 import styles from "../../misc/Styles";
 
 export default function Welcome({ route, navigation }) {
     return (
-        <View style={styles.screenContainer}>
+        <SafeAreaView style={styles.screenContainer}>
             <View style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
                 <View style={[{ flex: 0.6, justifyContent:"center"}]}>
                     <Text style={[styles.bigBlackText]}>
@@ -36,6 +36,6 @@ export default function Welcome({ route, navigation }) {
                     </Text>
                 </TouchableOpacity>
             </View>
-        </View>
+        </SafeAreaView>
     )
 }

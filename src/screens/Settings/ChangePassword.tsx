@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, ScrollView } from "react-native";
+import { View, Text, TouchableOpacity, ScrollView, SafeAreaView } from "react-native";
 import * as React from 'react';
 import styles from "../../misc/Styles";
 import { FancyTextInput } from "../../components/FancyTextInput";
@@ -18,7 +18,7 @@ export default function ChangePassword({ route, navigation }) {
 
 
     return (
-        <View style={styles.screenContainer}>
+        <SafeAreaView style={styles.screenContainer}>
             <View style={styles.headerContainer}>
                 <Text style={styles.headerText}>
                     Редактирование профиля
@@ -69,6 +69,6 @@ export default function ChangePassword({ route, navigation }) {
                     </Text>
                 </TouchableOpacity>
             </ScrollView>
-        </View>
+        </SafeAreaView>
     )
 }

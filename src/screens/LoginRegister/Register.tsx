@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, SafeAreaView } from "react-native";
 import * as React from 'react';
 import { signInWithPopup } from "firebase/auth";
 import LoginPic from "../../assets/pics/login";
@@ -9,7 +9,7 @@ export default function Register({ route, navigation }) {
 
 
     return (
-        <View style={styles.screenContainer}>
+        <SafeAreaView style={styles.screenContainer}>
             <View style={{ flex: 0.3, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
 
             </View>
@@ -40,6 +40,6 @@ export default function Register({ route, navigation }) {
                     </TouchableOpacity>
                 </View>
             </View>
-        </View>
+        </SafeAreaView>
     )
 }

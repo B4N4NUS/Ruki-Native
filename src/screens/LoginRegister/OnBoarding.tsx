@@ -1,4 +1,4 @@
-import { View, Text, TextInput } from "react-native";
+import { View, Text, TextInput, SafeAreaView } from "react-native";
 import * as React from 'react';
 import { TouchableOpacity, ScrollView } from "react-native";
 import LoginPic from "../../assets/pics/login";
@@ -37,7 +37,7 @@ export default function OnBoarding({ route, navigation }) {
         navigation.navigate("Main")
     }
 
-    return <View style={styles.screenContainer}>
+    return <SafeAreaView style={styles.screenContainer}>
         <ScrollView style={{ marginHorizontal: 30, flex: 1, height: "100%", }}
             showsVerticalScrollIndicator={false}>
             <View style={[{ flex: 1, justifyContent: "center", alignItems: "center" }]}>
@@ -75,5 +75,5 @@ export default function OnBoarding({ route, navigation }) {
                 </Text>
             </TouchableOpacity>
         </View>
-    </View>
+    </SafeAreaView>
 }

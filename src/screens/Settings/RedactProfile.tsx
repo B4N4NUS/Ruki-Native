@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, ScrollView, Image } from "react-native";
+import { View, Text, TouchableOpacity, ScrollView, Image, SafeAreaView } from "react-native";
 import * as React from 'react';
 import styles from "../../misc/Styles";
 import { FancyTextInput } from "../../components/FancyTextInput";
@@ -20,7 +20,7 @@ export default function RedactProfile({ route, navigation }) {
 
 
     return (
-        <View style={styles.screenContainer}>
+        <SafeAreaView style={styles.screenContainer}>
             <View style={styles.headerContainer}>
                 <Text style={styles.headerText}>
                     Редактирование профиля
@@ -79,6 +79,6 @@ export default function RedactProfile({ route, navigation }) {
                     </Text>
                 </TouchableOpacity>
             </ScrollView>
-        </View>
+        </SafeAreaView>
     )
 }

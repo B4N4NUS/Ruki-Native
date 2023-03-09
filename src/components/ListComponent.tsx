@@ -32,12 +32,12 @@ const styles = StyleSheet.create({
         paddingLeft:10,
     },
     header: {
-      font: 'sans-serif',
+      // font: 'sans-serif',
       fontSize: 15,
       // fontWeight: 'bold'
     },
     details: {
-      font: 'sans-serif',
+      // font: 'sans-serif',
       fontSize: 35,
       fontWeight: 'bold'
     }

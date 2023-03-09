@@ -9,8 +9,8 @@ export default function ProfileCard({ profile }: { profile: IProfile }) {
     <View style={styles.container}>
       <Image style={styles.avatar} source={profile?.imageUri ? { uri: profile.imageUri } : require("../assets/images/profile_icon.png")} />
       <View style={styles.userinfo}>
-        <Text style={styles.name}>{profile ? profile.name : "Абиба Абобов"}</Text>
-        <Text style={styles.username}>{profile ? profile.username : "@biba"}</Text>
+        <Text style={styles.name}>{profile ? profile.name : ""}</Text>
+        <Text style={styles.username}>{profile ? profile.username : ""}</Text>
       </View>
     </View>
   );

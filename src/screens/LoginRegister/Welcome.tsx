@@ -1,9 +1,25 @@
+import { useEffect } from "react";
 import { View, Text, Image, TouchableOpacity, SafeAreaView } from "react-native";
 import { Dimensions } from "react-native";
+import login from "../../assets/pics/login";
 import LoginPic from "../../assets/pics/login";
+import { getAsyncStorageLoginPass, storeAsyncStorageLoginPass } from "../../misc/AsyncStorage";
+import { auth } from "../../misc/Firebase";
 import styles from "../../misc/Styles";
 
 export default function Welcome({ route, navigation }) {
+
+    useEffect(() => {
+        getAsyncStorageLoginPass().then((response) => {
+            auth.signInWithEmailAndPassword(response.login, response.pass).then(userCredentials => {
+                const user = userCredentials.user
+                console.log("Logged in with: " + user.email)
+                
+                navigation.navigate("Main")
+            }).catch(()=>{})
+        }).catch(()=>{})
+    }, [])
+
     return (
         <SafeAreaView style={styles.screenContainer}>
             <View style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>

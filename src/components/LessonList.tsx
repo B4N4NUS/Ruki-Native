@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   header:{
     fontSize: 20,
     padding:10,
-    font: 'sans-serif',
+    // font: 'sans-serif',
     fontWeight:'bold'
   },
   list:{

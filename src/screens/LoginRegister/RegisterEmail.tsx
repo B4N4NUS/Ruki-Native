@@ -4,6 +4,7 @@ import LoginPic from "../../assets/pics/login";
 import { FancyTextInput } from "../../components/FancyTextInput";
 import { auth, storeProfile } from "../../misc/Firebase";
 import styles from "../../misc/Styles";
+import { storeAsyncStorageLoginPass } from "../../misc/AsyncStorage";
 
 export default function RegisterEmail({ route, navigation }) {
     const [name, setName] = React.useState("")
@@ -14,6 +15,7 @@ export default function RegisterEmail({ route, navigation }) {
         auth.createUserWithEmailAndPassword(login, pass).then(userCredentials => {
             const user = userCredentials.user
             console.log("Registered with: " + user.email)
+            storeAsyncStorageLoginPass({login: login, pass:pass})
             storeProfile({
                 name: name,
                 imageUri: "",

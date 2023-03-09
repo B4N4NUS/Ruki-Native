@@ -5,6 +5,7 @@ import StartPic from "../../assets/pics/start";
 import { TouchableOpacity } from "react-native";
 import { FancyTextInput } from "../../components/FancyTextInput";
 import { auth } from "../../misc/Firebase";
+import { storeAsyncStorageLoginPass } from "../../misc/AsyncStorage";
 
 export default function Login({ route, navigation }) {
     const [login, setLogin] = React.useState("")
@@ -14,6 +15,7 @@ export default function Login({ route, navigation }) {
         auth.signInWithEmailAndPassword(login, pass).then(userCredentials => {
             const user = userCredentials.user
             console.log("Logged in with: " + user.email)
+            storeAsyncStorageLoginPass({login: login, pass:pass})
             // mainOptions.login = login
             // mainOptions.pass = pass
 

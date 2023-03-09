@@ -2,6 +2,7 @@ import { View, Text, TouchableOpacity, ScrollView, SafeAreaView } from "react-na
 import * as React from 'react';
 import LoginPic from "../assets/pics/login";
 import styles from "../misc/Styles";
+import { storeAsyncStorageLoginPass } from "../misc/AsyncStorage";
 
 export default function Settings({ route, navigation }) {
     // const { options } = route.params
@@ -22,7 +23,9 @@ export default function Settings({ route, navigation }) {
                         Редактирования профиля
                     </Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.settingsButton}>
+                <TouchableOpacity style={styles.settingsButton} onPress={() => {
+                    navigation.navigate("Settings-ChangePassword")
+                }}>
                     <Text>
                         Изменение пароля
                     </Text>
@@ -32,7 +35,13 @@ export default function Settings({ route, navigation }) {
                         Push-Уведомления
                     </Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.settingsButton}>
+                <TouchableOpacity style={styles.settingsButton} onPress={() => {
+                    storeAsyncStorageLoginPass(null).then(() => navigation.reset({
+                        index: 0,
+                        routes: [{name: 'Welcome'}],
+                      })).catch((e)=>alert(e.message))
+                    
+                }}>
                     <Text>
                         Выход
                     </Text>

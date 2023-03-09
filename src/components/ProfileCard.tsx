@@ -7,7 +7,7 @@ import IProfile from '../interfaces/IProfile';
 export default function ProfileCard({ profile }: { profile: IProfile }) {
   return (
     <View style={styles.container}>
-      <Image style={styles.avatar} source={profile?.imageUri ? { uri: profile.imageUri } : require("../assets/images/profile_icon.png")} />
+      <Image style={styles.avatar} source={profile?.imageUri ? { uri: profile.imageUri } : {uri: "https://sun1-14.userapi.com/impg/jhJ5bKuIELN9NPIQIAvSxWUqQEyht9GFuXaUNA/ufsy0JoAQUk.jpg?size=400x400&quality=96&sign=45c3f28bc82aa689d2fbb493ab0e9d6c&type=album"}} />
       <View style={styles.userinfo}>
         <Text style={styles.name}>{profile ? profile.name : ""}</Text>
         <Text style={styles.username}>{profile ? profile.username : ""}</Text>

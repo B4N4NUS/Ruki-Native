@@ -10,53 +10,20 @@ import PicSelect from "../../components/PicSelect";
 
 export default function RedactProfile({ route, navigation }) {
     const [user, setUser] = React.useState<IProfile | null>(null)
+    const [pic, setPic] = React.useState("")
+    const [showPicker, setShowPicker] = React.useState(false)
     // const { options } = route.params
 
     React.useEffect(() => {
         getProfile().then((response) => {
+            if (pic !== "") {
+                response.imageUri = pic
+            }
             setUser(response)
             console.log("got user profile: ")
             console.log(response)
         })
-    }, [])
-
-    // const  docPicker = async() => {
-    //     // Pick a single file
-    //     try {
-    //       const res = await DocumentPicker.pick({
-    //        //by using allFiles type, you will able to pick any type of media from user device, 
-    //     //There can me more options as well
-    //     //DocumentPicker.types.images: All image types
-    //     //DocumentPicker.types.plainText: Plain text files
-    //     //DocumentPicker.types.audio: All audio types
-    //    //DocumentPicker.types.pdf: PDF documents
-    //    //DocumentPicker.types.zip: Zip files
-    //    //DocumentPicker.types.csv: Csv files
-    //    //DocumentPicker.types.doc: doc files
-    //    //DocumentPicker.types.docx: docx files
-    //   //DocumentPicker.types.ppt: ppt files
-    //   //DocumentPicker.types.pptx: pptx files
-    //   //DocumentPicker.types.xls: xls files
-    //   //DocumentPicker.types.xlsx: xlsx files
-    //   //For selecting more more than one options use the 
-    //  //type: [DocumentPicker.types.csv,DocumentPicker.types.xls]
-    //          type: [DocumentPicker.types.allFiles],
-    //       });
-    //       console.log(
-    //         res.uri,
-    //         res.type, // mime type
-    //         res.name,
-    //         res.size
-    //       );
-    //     //   this.uploadAPICall(res);//here you can call your API and send the data to that API
-    //     } catch (err) {
-    //       if (DocumentPicker.isCancel(err)) {
-    //         console.log("error -----", err);
-    //       } else {
-    //         throw err;
-    //       }
-    //     }
-    //   }
+    }, [pic])
 
 
     return (
@@ -66,21 +33,23 @@ export default function RedactProfile({ route, navigation }) {
                     Редактирование профиля
                 </Text>
             </View>
-            
-            <PicSelect/>
+
+            {showPicker && <PicSelect setPic={setPic} showPicker={setShowPicker} />}
 
             <ScrollView style={{ marginHorizontal: 20 }}>
-                <View style={{position:"relative"}}>
-                    <Image style={[styles.avatar, { margin: 20, alignSelf: "center", opacity:0.5 }]} source={user?.imageUri ? { uri: user.imageUri } : require("../../assets/images/profile_icon.png")} />
-                    <TouchableOpacity style={{position:"absolute", alignSelf:"center", top:"45%", justifyContent: 'center', alignItems: 'center'}}
-                    onPress={()=> {
-                        // docPicker()
-                    }}>
-                        <CamIcon/>
+                <View style={{ position: "relative" }}>
+                    <Image style={[styles.avatar, { margin: 20, alignSelf: "center", opacity: 0.5 }]} source={user?.imageUri ? { uri: user.imageUri } :
+                        { uri: "https://sun1-14.userapi.com/impg/jhJ5bKuIELN9NPIQIAvSxWUqQEyht9GFuXaUNA/ufsy0JoAQUk.jpg?size=400x400&quality=96&sign=45c3f28bc82aa689d2fbb493ab0e9d6c&type=album" }} />
+                    <TouchableOpacity style={{ position: "absolute", alignSelf: "center", top: "45%", justifyContent: 'center', alignItems: 'center' }}
+                        onPress={() => {
+                            // docPicker()
+                            setShowPicker(true)
+                        }}>
+                        <CamIcon />
                     </TouchableOpacity>
                 </View>
 
-                
+
 
                 <Text style={styles.littleText}>
                     Имя
@@ -116,6 +85,7 @@ export default function RedactProfile({ route, navigation }) {
 
 
                 <TouchableOpacity style={[styles.textButton, { marginHorizontal: 0 }]} onPress={() => {
+                    user.imageUri = pic
                     storeProfile(user).then((response) => {
                         navigation.navigate("Settings")
                         // options.update()

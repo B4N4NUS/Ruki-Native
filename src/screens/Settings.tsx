@@ -4,6 +4,8 @@ import LoginPic from "../assets/pics/login";
 import styles from "../misc/Styles";
 
 export default function Settings({ route, navigation }) {
+    // const { options } = route.params
+
     return (
         <View style={styles.screenContainer}>
             <View style={styles.headerContainer}>
@@ -13,7 +15,9 @@ export default function Settings({ route, navigation }) {
             </View>
 
             <ScrollView>
-                <TouchableOpacity style={styles.settingsButton}>
+                <TouchableOpacity style={styles.settingsButton} onPress={() => {
+                    navigation.navigate("Settings-RedactProfile")
+                }}>
                     <Text>
                         Редактирования профиля
                     </Text>

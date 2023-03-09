@@ -73,6 +73,13 @@ const styles = StyleSheet.create({
         marginHorizontal:20,
         backgroundColor: "#E4E4E4"
     },
+    avatar: {
+        borderRadius: 70,
+        width:120,
+        height:120,
+        borderWidth: 1,
+        borderColor: "black"
+      }
 });
 
 export default styles

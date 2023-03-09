@@ -12,6 +12,9 @@ import OnBoarding from '../screens/LoginRegister/OnBoarding';
 import Register from '../screens/LoginRegister/Register';
 import RegisterEmail from '../screens/LoginRegister/RegisterEmail';
 import Welcome from '../screens/LoginRegister/Welcome';
+import PushAdd from '../screens/Settings/PushAdd';
+import RedactProfile from '../screens/Settings/RedactProfile';
+import ChangePassword from '../screens/Settings/ChangePassword';
 
 const Stack = createStackNavigator();
 
@@ -24,6 +27,9 @@ export default function RootNavigator() {
         <Stack.Screen name="RegisterEmail" component={RegisterEmail}/>
         <Stack.Screen name='Login' component={Login}/>
         <Stack.Screen name='Settings' component={Settings}/>
+        <Stack.Screen name="Settings-RedactProfile" component={RedactProfile}/>
+        <Stack.Screen name="Settings-Push" component={PushAdd}/>
+        <Stack.Screen name="Settings-ChangePassword" component={ChangePassword}/>
         <Stack.Screen name='OnBoarding' component={OnBoarding}/>
         <Stack.Screen name='Main' component={TabNavigator}/>
       </Stack.Navigator>

@@ -1,3 +1,4 @@
+import { useFocusEffect, useIsFocused } from '@react-navigation/native';
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import SettingsIcon from '../assets/icons/settings';
@@ -11,11 +12,17 @@ import styles from '../misc/Styles';
 export default function Profile({ route, navigation }) {
   const [user, setUser] = React.useState<IProfile | null>(null)
 
+  const isFocused = useIsFocused();
 
   React.useEffect(() => {
     update()
-  }, [auth.currentUser.email]) 
+  }, [isFocused]) 
 
+  // useFocusEffect(() => {
+  //   update()
+  // }) 
+
+  
 
   const update = () => {
     getProfile().then((response) => {

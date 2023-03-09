@@ -3,11 +3,8 @@ import firebase from 'firebase/compat/app'
 import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore"
 import 'firebase/compat/auth'
 import { GoogleAuthProvider, signInWithPopup, signInWithRedirect } from "firebase/auth";
-import {
-    GoogleSignin,
-    GoogleSigninButton,
-    statusCodes,
-} from 'react-native-google-signin';
+import {getStorage, ref, uploadBytes} from "firebase/storage"
+
 import IProfile from '../interfaces/IProfile';
 
 // Your web app's Firebase configuration
@@ -19,6 +16,15 @@ const firebaseConfig = {
     messagingSenderId: "165462279786",
     appId: "1:165462279786:web:9ca170d167f9f424912c13"
 };
+
+const storage = getStorage()
+
+export async function uploadToStorage(file, setLoading) {
+    const fileRef = ref(storage,"userPics/"+ auth.currentUser.uid + ".png")
+    setLoading(true)
+    const snapshot = await uploadBytes(fileRef, file)
+    setLoading(false)
+}
 
 // Initialize Firebase
 let app

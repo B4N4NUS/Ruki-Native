@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     paddingTop:10
   },
   item: {
-    backgroundColor: '#f9c2ff',
+    backgroundColor: '#f0f2f0',
     padding: 20,
     marginVertical: 8,
     marginHorizontal: 16,

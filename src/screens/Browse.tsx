@@ -9,6 +9,7 @@ import {
 import List from "../components/List";
 import SearchBar from "../components/SearchBar";
 import styles from "../misc/Styles";
+import { getAllThemes } from "../misc/TasksAndLessions";
 
 const Browse = () => {
   const [searchPhrase, setSearchPhrase] = useState("");
@@ -17,14 +18,10 @@ const Browse = () => {
 
   // get data from the fake api endpoint
   useEffect(() => {
-    const getData = async () => {
-      const apiResponse = await fetch(
-        "https://my-json-server.typicode.com/kevintomas1995/logRocket_searchBar/languages"
-      );
-      const data = await apiResponse.json();
-      setFakeData(data);
-    };
-    getData();
+    getAllThemes().then((response) => {
+      setFakeData(response)
+      console.log(response)
+    })
   }, []);
 
   return (

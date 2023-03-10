@@ -54,14 +54,15 @@ const Item = ({ name, details, done }) => (
 
 const List = ({ searchPhrase, setClicked, data }) => {
   const renderItem = ({ item }) => {
+    console.log(item)
     if (searchPhrase === "") {
-      return <Item name={item.name} details={item.details} done={true} />;
+      return <Item name={item.name} details={item.description} done={true} />;
     }
     if (item.name.toUpperCase().includes(searchPhrase.toUpperCase().trim().replace(/\s/g, ""))) {
-      return <Item name={item.name} details={item.details} done={true} />;
+      return <Item name={item.name} details={item.description} done={true} />;
     }
     if (item.details.toUpperCase().includes(searchPhrase.toUpperCase().trim().replace(/\s/g, ""))) {
-      return <Item name={item.name} details={item.details} done={true} />;
+      return <Item name={item.name} details={item.description} done={true} />;
     }
   };
 

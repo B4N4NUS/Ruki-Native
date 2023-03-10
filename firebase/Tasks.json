@@ -2,6 +2,7 @@
     "tasks": [
         {
             "name":"blank",
+            "description": "blank blank",
             "id": 0,
             "subtaskIds": [0,1,2,3,4]
         },

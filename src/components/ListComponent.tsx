@@ -1,7 +1,8 @@
 import React from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
+import ConfirmIcon from '../assets/icons/confirm';
 
-const ListComponent = ({header, details}) => {
+const ListComponent = ({header, details}: {header: string, details:string}) => {
         return (
           <View style={styles.container}>
             <View style={styles.fixedRatio}>
@@ -40,6 +41,13 @@ const styles = StyleSheet.create({
       // font: 'sans-serif',
       fontSize: 35,
       fontWeight: 'bold'
+    },
+    circle: {
+      height: "50%",
+      aspectRatio: 1,
+      borderColor: "black",
+      borderRadius: 50,
+      borderWidth: 1,
     }
 });
 

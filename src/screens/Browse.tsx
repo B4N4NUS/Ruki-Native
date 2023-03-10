@@ -29,20 +29,19 @@ const Browse = () => {
 
   return (
     <SafeAreaView style={styles.screenContainer}>
-      {!clicked && <Text style={styless.title}>Programming Languages</Text>}
       <SearchBar
         searchPhrase={searchPhrase}
         setSearchPhrase={setSearchPhrase}
         clicked={clicked}
         setClicked={setClicked}
       />
-      {  (
+      {(
 
-          <List
-            searchPhrase={searchPhrase}
-            data={fakeData}
-            setClicked={setClicked}
-          />
+        <List
+          searchPhrase={searchPhrase}
+          data={fakeData}
+          setClicked={setClicked}
+        />
 
       )}
     </SafeAreaView>

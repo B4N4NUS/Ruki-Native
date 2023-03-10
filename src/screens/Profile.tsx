@@ -4,6 +4,7 @@ import { View, Text, StyleSheet, Image, TouchableOpacity, SafeAreaView } from 'r
 import SettingsIcon from '../assets/icons/settings';
 import Achievement from '../components/Achievement';
 import AchievementList from '../components/AchievementList';
+import LessonList from '../components/LessonList';
 import ProfileCard from '../components/ProfileCard';
 import IProfile from '../interfaces/IProfile';
 import { auth, getProfile } from '../misc/Firebase';
@@ -49,6 +50,7 @@ export default function Profile({ route, navigation }) {
       {/* <ProfileCard style={styles.profileCard}/>
       <AchievementList style={styles.list}/> */}
       <ProfileCard profile={user}/>
+      <LessonList/>
       <AchievementList />
     </SafeAreaView>
   );

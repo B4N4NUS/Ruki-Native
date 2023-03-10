@@ -1,6 +1,7 @@
+import React from "react";
 import { useEffect } from "react";
 import { View, Text, Image, TouchableOpacity, SafeAreaView } from "react-native";
-import { Dimensions } from "react-native";
+import { Dimensions, ActivityIndicator } from "react-native";
 import login from "../../assets/pics/login";
 import LoginPic from "../../assets/pics/login";
 import { getAsyncStorageLoginPass, storeAsyncStorageLoginPass } from "../../misc/AsyncStorage";
@@ -8,31 +9,38 @@ import { auth } from "../../misc/Firebase";
 import styles from "../../misc/Styles";
 
 export default function Welcome({ route, navigation }) {
+    const [loading, setLoading] = React.useState(false)
 
     useEffect(() => {
+        setLoading(true)
         getAsyncStorageLoginPass().then((response) => {
             auth.signInWithEmailAndPassword(response.login, response.pass).then(userCredentials => {
                 const user = userCredentials.user
                 console.log("Logged in with: " + user.email)
+
+                navigation.navigate("Main").then(() => setLoading(false))
+                navigation.reset({
+                    index: 0,
+                    routes: [{name: 'Main'}],
+                  })
                 
-                navigation.navigate("Main")
-            }).catch(()=>{})
-        }).catch(()=>{})
+            }).catch(() => { setLoading(false) })
+        }).catch(() => { setLoading(false) })
     }, [])
 
     return (
         <SafeAreaView style={styles.screenContainer}>
-            <View style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
-                <View style={[{ flex: 0.6, justifyContent:"center"}]}>
+            {!loading && <View style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+                <View style={[{ flex: 0.6, justifyContent: "center" }]}>
                     <Text style={[styles.bigBlackText]}>
                         Добро {"\n"}пожаловать!
                     </Text>
                 </View>
-                <View style={[{ flex: 1, justifyContent:"center",alignItems:"center" }]}>
+                <View style={[{ flex: 1, justifyContent: "center", alignItems: "center" }]}>
                     <LoginPic height={"100%"} />
                 </View>
-            </View>
-            <View style={{ flex: 0 }}>
+            </View>}
+            {!loading && <View style={{ flex: 0 }}>
                 <TouchableOpacity style={styles.textButton}
                     onPress={() => {
                         navigation.navigate("Login")
@@ -51,7 +59,10 @@ export default function Welcome({ route, navigation }) {
                         Зарегистрироваться
                     </Text>
                 </TouchableOpacity>
-            </View>
+            </View>}
+            {loading && <View style={{ flex: 1, justifyContent:"center", alignItems:"center" }}>
+                <ActivityIndicator size={"large"} color={"black"} />
+            </View>}
         </SafeAreaView>
     )
 }

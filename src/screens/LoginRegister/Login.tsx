@@ -6,10 +6,12 @@ import { TouchableOpacity } from "react-native";
 import { FancyTextInput } from "../../components/FancyTextInput";
 import { auth } from "../../misc/Firebase";
 import { storeAsyncStorageLoginPass } from "../../misc/AsyncStorage";
+import { useToast } from "react-native-toast-notifications";
 
 export default function Login({ route, navigation }) {
     const [login, setLogin] = React.useState("")
     const [pass, setPass] = React.useState("")
+    const toast = useToast()
 
     const handleLogin = () => {
         auth.signInWithEmailAndPassword(login, pass).then(userCredentials => {
@@ -26,7 +28,12 @@ export default function Login({ route, navigation }) {
             // }
 
             navigation.navigate("Main")
-        }).catch(error => alert(error.message))
+        }).catch(error => toast.show(error.message, {
+            type: "normal",
+            placement: "top",
+            duration: 2000,
+            animationType: "slide-in",
+          }))
     }
 
     return <SafeAreaView style={styles.screenContainer}>

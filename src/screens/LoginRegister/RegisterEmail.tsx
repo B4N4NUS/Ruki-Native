@@ -5,11 +5,13 @@ import { FancyTextInput } from "../../components/FancyTextInput";
 import { auth, storeProfile } from "../../misc/Firebase";
 import styles from "../../misc/Styles";
 import { storeAsyncStorageLoginPass } from "../../misc/AsyncStorage";
+import { useToast } from "react-native-toast-notifications";
 
 export default function RegisterEmail({ route, navigation }) {
     const [name, setName] = React.useState("")
     const [login, setLogin] = React.useState("")
     const [pass, setPass] = React.useState("")
+    const toast = useToast()
 
     const handleSignUp = () => {
         auth.createUserWithEmailAndPassword(login, pass).then(userCredentials => {
@@ -25,7 +27,12 @@ export default function RegisterEmail({ route, navigation }) {
                 pushClasses: false,
                 pushUpdates: false,
             }).then(() => navigation.navigate("OnBoarding"))
-        }).catch(error => alert("Network Error"))
+        }).catch(error => toast.show(error.message, {
+            type: "normal",
+            placement: "top",
+            duration: 2000,
+            animationType: "slide-in",
+          }))
     }
 
     return (

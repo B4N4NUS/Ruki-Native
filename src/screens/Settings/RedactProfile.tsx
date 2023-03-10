@@ -7,11 +7,18 @@ import { getProfile, storeProfile } from "../../misc/Firebase";
 import CamIcon from "../../assets/icons/cam";
 import DocumentPicker from "react-native-document-picker";
 import PicSelect from "../../components/PicSelect";
+import firebase from "firebase/compat";
+import { useToast } from "react-native-toast-notifications";
+import { storeAsyncStorageLoginPass } from "../../misc/AsyncStorage";
 
 export default function RedactProfile({ route, navigation }) {
+    const toast = useToast()
     const [user, setUser] = React.useState<IProfile | null>(null)
     const [pic, setPic] = React.useState("")
     const [showPicker, setShowPicker] = React.useState(false)
+    const [pass, setPass] = React.useState("")
+    const [oldEmail, setOldEmail] = React.useState("")
+    const [showPass, setShowPass] = React.useState(false)
     // const { options } = route.params
 
     React.useEffect(() => {
@@ -20,10 +27,28 @@ export default function RedactProfile({ route, navigation }) {
                 response.imageUri = pic
             }
             setUser(response)
+            setOldEmail(response.email)
             console.log("got user profile: ")
             console.log(response)
         })
     }, [pic])
+
+
+
+    const reauthenticate = (currentPassword) => {
+        var user = firebase.auth().currentUser;
+        var cred = firebase.auth.EmailAuthProvider.credential(
+            user.email, currentPassword);
+        return user.reauthenticateWithCredential(cred);
+    }
+
+    const changeEmail = async (currentPassword) => {
+        await reauthenticate(currentPassword).then((response) => {
+            var userr = firebase.auth().currentUser;
+            userr.updateEmail(user.email).then(() => reauthenticate(pass))
+        })
+    }
+
 
 
     return (
@@ -67,13 +92,25 @@ export default function RedactProfile({ route, navigation }) {
                     setUser(user)
                 }} />
 
-                <Text style={styles.littleText}>
+                {/* <Text style={styles.littleText}>
                     Эл. почта
                 </Text>
                 <FancyTextInput style={styles.wideInput} defaultValue={user?.email} onChangeText={(text) => {
+                    if (text !== oldEmail) {
+                        setShowPass(true)
+                    } else {
+                        setShowPass(false)
+                    }
                     user.email = text
                     setUser(user)
                 }} />
+
+                {showPass && <Text style={[styles.littleText, { color: "red" }]}>
+                    Пароль
+                </Text>}
+                {showPass && <FancyTextInput style={[styles.wideInput, { borderColor: "red" }]} defaultValue={"Password..."} onChangeText={(text) => {
+                    setPass(text)
+                }} />} */}
 
                 <Text style={styles.littleText}>
                     Номер телефона
@@ -86,10 +123,26 @@ export default function RedactProfile({ route, navigation }) {
 
                 <TouchableOpacity style={[styles.textButton, { marginHorizontal: 0 }]} onPress={() => {
                     user.imageUri = pic
-                    storeProfile(user).then((response) => {
-                        navigation.navigate("Settings")
-                        // options.update()
-                    }).catch((e) => alert(e))
+                    // if (showPass) {
+                    //     changeEmail(pass).then(() => storeProfile(user).then((response) => {
+                    //         navigation.navigate("Settings")
+                    //         storeAsyncStorageLoginPass({login: user.email, pass:pass})
+                    //         // options.update()
+                    //     }).catch((e) => alert(e))).catch((error) => {
+                    //         toast.show(error.message, {
+                    //             type: "normal",
+                    //             placement: "top",
+                    //             duration: 2000,
+                    //             animationType: "slide-in",
+                    //         })
+                    //         setPass("")
+                    //     });
+                    // } else {
+                        storeProfile(user).then((response) => {
+                            navigation.navigate("Settings")
+                            // options.update()
+                        }).catch((e) => alert(e))
+                    // }
                 }}>
                     <Text style={styles.textButtonText}>
                         Сохранить

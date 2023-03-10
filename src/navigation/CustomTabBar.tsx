@@ -45,7 +45,7 @@ export function IconTabs({ state, descriptors, navigation }) {
             testID={options.tabBarTestID}
             onPress={onPress}
             onLongPress={onLongPress}
-            style={{ flex: 1, alignItems: "center", paddingVertical: 20, opacity: (isFocused? 1: 0.3)}}
+            style={{ flex: 1, alignItems: "center", paddingVertical: 10, opacity: (isFocused? 1: 0.3)}}
           >
             {label === "Home" && <HomeIcon />}
             {label === "Browse" && <BookIcon />}

@@ -12,7 +12,7 @@ import ListComponent from './ListComponent';
 var DATA = [
     {
       header: "Уроков пройдено",
-      details: "12"
+      details: "11"
     },
     {
         header: "Уроков пройдено",
@@ -20,11 +20,11 @@ var DATA = [
     },
     {
         header: "Уроков пройдено",
-        details: "12"
+        details: "13"
     },
     {
         header: "Уроков пройдено",
-        details: "12"
+        details: "14"
     },
 
   ];
@@ -38,7 +38,7 @@ const LessonList = () => {
         data={DATA}
         numColumns={2}
         renderItem={({item}) => <ListComponent header={item.header} details={item.details}/>}
-        keyExtractor={item => item.header}
+        keyExtractor={item => item.header+item.details}
       />
     </SafeAreaView>
   );

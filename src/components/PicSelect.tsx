@@ -7,7 +7,7 @@ import { Image, FlatList, TouchableOpacity, View } from 'react-native'
 import IProfile from "../interfaces/IProfile";
 
 export default function PicSelect({ setPic, showPicker }: {setPic:  React.Dispatch<React.SetStateAction<string>>, showPicker: React.Dispatch<React.SetStateAction<boolean>>}) {
-    const pics = ["кhttps://sun9-31.userapi.com/impg/TbJfd0klbEzMN_W9a24vkrjMCh1hogQ27xhRAg/Sfp80wWvaMo.jpg?size=400x400&quality=96&sign=3edd73a13e514c321cf4acd68035a585&type=album",
+    const pics = ["https://sun9-31.userapi.com/impg/TbJfd0klbEzMN_W9a24vkrjMCh1hogQ27xhRAg/Sfp80wWvaMo.jpg?size=400x400&quality=96&sign=3edd73a13e514c321cf4acd68035a585&type=album",
         "https://sun1-54.userapi.com/impg/3AmgiE1f7E8HA88GKRr-K8TniEJ_bOLZUkSITg/q1RzZE4KkRY.jpg?size=400x400&quality=96&sign=6894f8f7066eb4940c2bd1a012d4f1f2&type=album",
         "https://sun9-80.userapi.com/impg/5ciwgJqiGeS90DCw6RZxeCzKe7HKw7lYLsahxQ/JJdyrDcsOMQ.jpg?size=400x400&quality=96&sign=2e8f32c72d7af03eeb97736af361f9ce&type=album",
         "https://sun1-89.userapi.com/impg/sE2IXHyZqUqVRat_0DjbM-bLCFS2HrZQwG1TLA/6DpFtYtVoqU.jpg?size=400x400&quality=96&sign=265879c106db88a9f243ba045069587a&type=album",

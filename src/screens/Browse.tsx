@@ -11,7 +11,7 @@ import SearchBar from "../components/SearchBar";
 import styles from "../misc/Styles";
 import { getAllThemes } from "../misc/TasksAndLessions";
 
-const Browse = () => {
+export default function Browse({ route, navigation }) {
   const [searchPhrase, setSearchPhrase] = useState("");
   const [clicked, setClicked] = useState(false);
   const [fakeData, setFakeData] = useState();
@@ -37,15 +37,13 @@ const Browse = () => {
         <List
           searchPhrase={searchPhrase}
           data={fakeData}
-          setClicked={setClicked}
-        />
+          setClicked={setClicked} 
+          navigation={navigation}/>
 
       )}
     </SafeAreaView>
   );
 };
-
-export default Browse;
 
 const styless = StyleSheet.create({
   root: {

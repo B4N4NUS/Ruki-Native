@@ -14,7 +14,7 @@ export default function TabNavigator() {
             <Tab.Screen name="Home" component={Home} />
             <Tab.Screen name="Browse" component={Browse} />
             <Tab.Screen name="Profile" component={Profile} />
-            <Tab.Screen name="Lession" component={Lession} />
+            {/* <Tab.Screen name="Lession" component={Lession} /> */}
         </Tab.Navigator >
     )
 }

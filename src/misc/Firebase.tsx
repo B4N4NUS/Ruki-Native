@@ -3,7 +3,7 @@ import firebase from 'firebase/compat/app'
 import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore"
 import 'firebase/compat/auth'
 import { GoogleAuthProvider, signInWithPopup, signInWithRedirect } from "firebase/auth";
-import {getStorage, ref, uploadBytes} from "firebase/storage"
+import { getStorage, ref, uploadBytes } from "firebase/storage"
 
 import IProfile from '../interfaces/IProfile';
 
@@ -145,11 +145,50 @@ const storeUserData = async (value) => {
 const storage = getStorage()
 
 export async function uploadToStorage(file, setLoading) {
-    const fileRef = ref(storage,"userPics/"+ auth.currentUser.uid + ".png")
+    const fileRef = ref(storage, "userPics/" + auth.currentUser.uid + ".png")
     setLoading(true)
     const snapshot = await uploadBytes(fileRef, file)
     setLoading(false)
 }
 
+export const getThemeProgress = async () => {
+    try {
+        const docRef = doc(db, "progress", auth.currentUser.email)
+        const docSnap = await getDoc(docRef)
+        if (docSnap.exists()) {
+            console.log(docSnap.data().data)
+            return docSnap.data().data
+        } else {
+            console.log("No progress")
+            return { data: [] }
+        }
+    } catch (e) {
+        alert(e.message)
+    }
+}
 
-export { auth, app, db,getProfile, storeProfile, getFirestore, doc, setDoc, getDoc, getUserData, storeUserData, getPopUpSign, isFirstTimeInApp, storeOnboarding }
+
+export const storeThemeProgress = async (id: number, progress: number, length: number) => {
+    getThemeProgress().then((response) => {
+        if (response.data.find((item) => item.id === id)) {
+            response.data[response.data.findIndex((item) => item.id === id)].progress = progress
+        } else {
+            response.data.push({ id: id, progress: progress, length: length })
+        }
+
+        const docRef = setDoc(doc(db, "progress", auth.currentUser.email), {
+            data: response
+        })
+    })
+}
+
+export const clearThemeProgress = async (id: number, progress: number, length: number) => {
+    // const docRef = setDoc(doc(db, "progress", auth.currentUser.email), {
+    // })
+    // db.collection('progress').doc("progress").delete()
+}
+
+
+
+
+export { auth, app, db, getProfile, storeProfile, getFirestore, doc, setDoc, getDoc, getUserData, storeUserData, getPopUpSign, isFirstTimeInApp, storeOnboarding }

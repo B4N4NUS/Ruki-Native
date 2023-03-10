@@ -1,46 +1,57 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import { View, Text, StyleSheet, Image, Dimensions } from 'react-native';
+import { getThemesById } from '../misc/TasksAndLessions';
 
-const Achievement = ({header, details}) => {
-        return (
-          <View style={styles.container}>
-            <View style={styles.fixedRatio}>
-                <Text style={styles.header}>{header}</Text>
-                <Text style={styles.details}>{details}</Text>
-            </View>
-          </View>
-        );
-      
+const Achievement = ({ id, progress, length }) => {
+  const [name, setName] = React.useState("")
+  
+  React.useEffect(() => {
+    getThemesById(id).then((resp) => {
+      setName(resp.name)
+    })
+  }, [])
+
+  return (
+    <View style={styles.container}>
+        <Text style={styles.header}>{name}</Text>
+        <View style={{flexDirection:"row",}}>
+        <Text style={styles.progress}>{progress}</Text>
+          <Text style={styles.details}>{"/"+length}</Text>
+        </View>
+    </View>
+  );
+
 };
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      backgroundColor: 'white',
-      padding: 5
-    },
-    fixedRatio: {
-      backgroundColor: '#f0f2f0',
-      flex: 1,
-      aspectRatio: 16 / 9,
-      borderRadius: 20,
-        // padding: 10,
-        justifyContent: 'space-around',
-        paddingLeft:10,
-    },
-    header: {
-      // font: 'sans-serif',
-      fontSize: 15,
-      // fontWeight: 'bold'
-    },
-    details: {
-      // font: 'sans-serif',
-      fontSize: 35,
-      fontWeight: 'bold'
-    }
+  container: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    // padding: 5,
+    backgroundColor: '#f0f2f0',
+    width: Dimensions.get("window").width / 2 - 30,
+    aspectRatio: 16 / 9,
+    borderRadius: 20,
+    margin:10,
+    // padding: 10,
+    // paddingLeft: 10,
+  },
+  header: {
+    // font: 'sans-serif',
+    fontSize: 16,
+    // fontWeight: 'bold'
+  },
+  progress: {
+    // font: 'sans-serif',
+    fontSize: 34,
+    fontWeight: 'bold'
+  },
+  details: {
+    // font: 'sans-serif',
+    fontSize: 16,
+
+  }
 });
 
 export default Achievement;

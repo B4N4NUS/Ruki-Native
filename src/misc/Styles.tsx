@@ -16,9 +16,9 @@ const styles = StyleSheet.create({
         marginVertical: 5,
     },
     textWhiteButton: {
-        borderRadius:15,
-        borderWidth:1,
-        borderColor:"black",
+        borderRadius: 15,
+        borderWidth: 1,
+        borderColor: "black",
         alignItems: "center",
         padding: 15,
         marginHorizontal: 10,
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         display: "flex",
         marginHorizontal: 20,
-        marginBottom:30,
+        marginBottom: 30,
     },
     headerText: {
         fontWeight: "bold",
@@ -49,37 +49,43 @@ const styles = StyleSheet.create({
         justifyContent: "center"
     },
     littleText: {
-        fontSize:10,
-        textAlign:"left",
-        color:"#919191"
+        fontSize: 10,
+        textAlign: "left",
+        color: "#919191"
     },
     wideInput: {
-        borderRadius:10,
-        borderWidth:1,
-        borderColor:"black",
-        paddingVertical:10,
+        borderRadius: 10,
+        borderWidth: 1,
+        borderColor: "black",
+        paddingVertical: 10,
         paddingHorizontal: 15,
         marginVertical: 5,
     },
     settingsContainer: {
-        margin:20,
-        flexDirection:"column"
+        margin: 20,
+        flexDirection: "column"
     },
     settingsButton: {
-        borderRadius:10,
-        paddingVertical:15,
-        paddingHorizontal:25,
-        marginVertical:5,
-        marginHorizontal:20,
+        borderRadius: 10,
+        paddingVertical: 15,
+        paddingHorizontal: 25,
+        marginVertical: 5,
+        marginHorizontal: 20,
         backgroundColor: "#E4E4E4"
     },
     avatar: {
         borderRadius: 70,
-        width:120,
-        height:120,
+        width: 120,
+        height: 120,
         borderWidth: 1,
         borderColor: "black"
-      }
+    },
+    hand: {
+        width: "20%",
+        aspectRatio: 1,
+        resizeMode: "contain"
+    }
+
 });
 
 export default styles

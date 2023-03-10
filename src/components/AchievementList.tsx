@@ -9,55 +9,33 @@ import {
 } from 'react-native';
 import Achievement from './Achievement';
 
-var DATA = [
-    {
-      header: "Уроков пройдено",
-      details: "12"
-    },
-    {
-        header: "Уроков пройдено",
-        details: "12"
-    },
-    {
-        header: "Уроков пройдено",
-        details: "12"
-    },
-    {
-        header: "Уроков пройдено",
-        details: "12"
-    },
-
-  ];
 
 
-const AchievementList = () => {
+const AchievementList = ({data}) => {
   return (
-    <SafeAreaView style={styles.container}>
-      <Text style={styles.header}>Статистика и достижения</Text>
-      {/* <FlatList style={styles.list}
-        data={DATA}
+    <SafeAreaView style={{}}>
+      <Text style={styles.header}>Статистика</Text>
+      <FlatList style={styles.list}
+        data={data}
         numColumns={2}
-        renderItem={({item}) => <Achievement header={item.header} details={item.details} key={item.details[0]}/>}
-        // keyExtractor={item => item.id}
-      /> */}
+        renderItem={({item}) => <Achievement id={item.id}  progress={item.progress} length={item.length}/>}
+        keyExtractor={item => item.id}
+      />
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 2,
-    // marginTop: StatusBar.currentHeight || 0,
-    // padding: 10
-  },
   header:{
     fontSize: 20,
     padding:10,
     // font: 'sans-serif',
-    fontWeight:'bold'
+    fontWeight:'bold',
+    marginHorizontal:15,
   },
   list:{
-    paddingTop:10
+    paddingTop:10,
+    marginHorizontal:10,
   },
   item: {
     backgroundColor: '#f9c2ff',

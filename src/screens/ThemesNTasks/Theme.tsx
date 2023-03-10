@@ -1,16 +1,12 @@
 import { useFocusEffect, useIsFocused } from '@react-navigation/native';
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, SafeAreaView } from 'react-native';
-import SettingsIcon from '../assets/icons/settings';
-import Achievement from '../components/Achievement';
-import AchievementList from '../components/AchievementList';
-import ProgressBar from '../components/Lession/ProgressBar';
-import LessonList from '../components/LessonList';
-import ProfileCard from '../components/ProfileCard';
-import IProfile from '../interfaces/IProfile';
-import { auth, clearThemeProgress, getProfile, getThemeProgress, storeThemeProgress } from '../misc/Firebase';
-import styles from '../misc/Styles';
-import { getAllTasks } from '../misc/TasksAndLessions';
+import SettingsIcon from '../../assets/icons/settings';
+import AchievementList from '../../components/AchievementList';
+import ProfileCard from '../../components/ProfileCard';
+import IProfile from '../../interfaces/IProfile';
+import { getProfile, getThemeProgress } from '../../misc/Firebase';
+import styles from '../../misc/Styles';
 
 export default function Profile({ route, navigation }) {
   const [user, setUser] = React.useState<IProfile | null>(null)

@@ -27,20 +27,26 @@ export const getAllDictionaries = async () => {
     );
     if (apiResponse.ok) {
         const data = await apiResponse.json();
-        return data.dicktionaries
+        console.log(data)
+        return data.dictionaries
     }
     return null
 }
 
 export const getDictById = async (id: number) => {
+    // getAllDictionaries().then((response) => {
+    //     return response.find((item) => item.id === id)
+    // }).catch((e) => {return null})
     const apiResponse = await fetch(
         "http://ebreak.ru/Dictionaries.json"
     );
     if (apiResponse.ok) {
+        // console.log(apiResponse.body)
         const data = await apiResponse.json();
-
-        return data.dicktionaries.find((item) => item.id === id)
+        
+        return data.dictionaries.find((item) => item.id === id)
     }
+    // console.log(apiResponse)
     return null
 }
 
@@ -51,7 +57,19 @@ export const getTaskById = async (id: number) => {
     if (apiResponse.ok) {
         const data = await apiResponse.json();
 
-        return data.dicktionaries.find((item) => item.id === id)
+        return data.tasks.find((item) => item.id === id)
+    }
+    return null
+}
+
+export const getThemesById = async (id: number) => {
+    const apiResponse = await fetch(
+        "http://ebreak.ru/Themes.json"
+    );
+    if (apiResponse.ok) {
+        const data = await apiResponse.json();
+        
+        return data.themes.find((item) => item.id === id)
     }
     return null
 }

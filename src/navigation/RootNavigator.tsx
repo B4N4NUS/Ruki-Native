@@ -15,6 +15,7 @@ import Welcome from '../screens/LoginRegister/Welcome';
 import PushAdd from '../screens/Settings/PushAdd';
 import RedactProfile from '../screens/Settings/RedactProfile';
 import ChangePassword from '../screens/Settings/ChangePassword';
+import Dictionary from '../screens/ThemesNTasks/Dictionary';
 
 const Stack = createStackNavigator();
 
@@ -32,6 +33,9 @@ export default function RootNavigator() {
         <Stack.Screen name="Settings-ChangePassword" component={ChangePassword}/>
         <Stack.Screen name='OnBoarding' component={OnBoarding}/>
         <Stack.Screen name='Main' component={TabNavigator}/>
+        <Stack.Screen name="Dictionary" component={Dictionary}/>
+        <Stack.Screen name="Theme" component={Welcome}/>
+        <Stack.Screen name="Task" component={Welcome}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

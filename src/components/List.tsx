@@ -1,4 +1,5 @@
 // List.js
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import {
   StyleSheet,
@@ -6,12 +7,13 @@ import {
   View,
   FlatList,
   SafeAreaView,
+  TouchableOpacity
 } from "react-native";
 import ConfirmIcon from "../assets/icons/confirm";
 
 // definition of the Item, which will be rendered in the FlatList
-const Item = ({ name, details, done }) => (
-  <View style={{
+const Item = ({ theme, done, navigation }) => (
+  <TouchableOpacity style={{
     marginVertical:10,
     marginHorizontal:20,
     flex: 1,
@@ -21,7 +23,12 @@ const Item = ({ name, details, done }) => (
     justifyContent: 'space-between',
     borderRadius: 20,
     paddingHorizontal:20
-  }} >
+  }}
+  onPress={() => {
+    // const navigation = useNavigation()
+    navigation.navigate("Dictionary", {options:{theme:theme}})
+  }} 
+  >
     <View style={{
 
       flex: 1,
@@ -31,8 +38,8 @@ const Item = ({ name, details, done }) => (
       justifyContent: 'space-around',
       // paddingLeft:10,
     }}>
-      <Text style={styles.header}>{name}</Text>
-      <Text style={styles.details}>{details}</Text>
+      <Text style={styles.header}>{theme.name}</Text>
+      <Text style={styles.details}>{theme.description}</Text>
     </View>
     <View>
       <View style={{
@@ -49,20 +56,20 @@ const Item = ({ name, details, done }) => (
         {done && <ConfirmIcon height={"50%"} width={"50%"} alignSelf={"center"}/>}
       </View>
     </View>
-  </View >
+  </TouchableOpacity >
 );
 
-const List = ({ searchPhrase, setClicked, data }) => {
+const List = ({ searchPhrase, setClicked, data, navigation }) => {
   const renderItem = ({ item }) => {
-    console.log(item)
+    // console.log(item)
     if (searchPhrase === "") {
-      return <Item name={item.name} details={item.description} done={true} />;
+      return <Item theme={item} done={true} navigation={navigation}/>;
     }
     if (item.name.toUpperCase().includes(searchPhrase.toUpperCase().trim().replace(/\s/g, ""))) {
-      return <Item name={item.name} details={item.description} done={true} />;
+      return <Item theme={item} done={true} navigation={navigation}/>;
     }
-    if (item.details.toUpperCase().includes(searchPhrase.toUpperCase().trim().replace(/\s/g, ""))) {
-      return <Item name={item.name} details={item.description} done={true} />;
+    if (item.description.toUpperCase().includes(searchPhrase.toUpperCase().trim().replace(/\s/g, ""))) {
+      return <Item theme={item} done={true} navigation={navigation}/>;
     }
   };
 

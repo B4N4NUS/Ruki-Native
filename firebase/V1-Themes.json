@@ -5,21 +5,21 @@
             "description": "Базовые слова",
             "id": 0,
             "dictionaryId":0,
-            "subtaskIds": [0,1,2,3,4]
+            "subtaskIds": [0,1]
         },
         {
             "name":"Тема 2",
             "description": "Узнайте основные фразы",
             "id": 1,
             "dictionaryId":1,
-            "subtaskIds": [0,1,2,3,4]
+            "subtaskIds": [0,1,2]
         },
         {
             "name":"Тема 3",
             "description": "Составление предложений",
             "id": 2,
             "dictionaryId":2,
-            "subtaskIds": [0,1,2,3,4]
+            "subtaskIds": [0,1,2,3]
         },
         {
             "name":"Тема 4",
@@ -33,7 +33,7 @@
             "description": "Веревка висит на люстре",
             "id": 4,
             "dictionaryId":4,
-            "subtaskIds": [0,1,2,3,4]
+            "subtaskIds": [0]
         },
         {
             "name":"Тема 6",
@@ -46,7 +46,7 @@
             "name":"Тема 7",
             "description": "Воровской жаргон",
             "id": 6,
-            "dictionaryId":6,
+            "dictionaryId":2,
             "subtaskIds": [0,1,2,3,4]
         }
     ]

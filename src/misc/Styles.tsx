@@ -12,7 +12,6 @@ const styles = StyleSheet.create({
         backgroundColor: "black",
         alignItems: "center",
         padding: 15,
-        marginHorizontal: 10,
         marginVertical: 5,
     },
     textWhiteButton: {
@@ -21,7 +20,6 @@ const styles = StyleSheet.create({
         borderColor: "black",
         alignItems: "center",
         padding: 15,
-        marginHorizontal: 10,
         marginVertical: 5,
     },
     textButtonText: {
@@ -81,7 +79,8 @@ const styles = StyleSheet.create({
         borderColor: "black"
     },
     hand: {
-        width: "20%",
+        width: 40,
+        minWidth: 40,
         aspectRatio: 1,
         resizeMode: "contain"
     }

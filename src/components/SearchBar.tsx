@@ -13,7 +13,7 @@ const SearchBar = ({ clicked, searchPhrase, setSearchPhrase, setClicked }) => {
       padding: 10,
       backgroundColor: '#f0f2f0',
       borderRadius: 15,
-      position: "relative"
+      position: "relative",
     }}>
       <Feather
         name="search"

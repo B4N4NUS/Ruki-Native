@@ -13,46 +13,47 @@ export default function Dictionary({ route, navigation }) {
   const [theme, setTheme] = React.useState(null)
   const { options } = route.params
 
-  const isFocused = useIsFocused();
-
   React.useEffect(() => {
     console.log("Want to find: " + options.theme.dictionaryId)
     setTheme(options.theme)
   }, [])
 
-  // useFocusEffect(() => {
-  //   update()
-  // }) 
-
-
-
-  //   const update = () => {
-  //     getProfile().then((response) => {
-  //       setUser(response)
-  //       // console.log("got user profile: ")
-  //       // console.log(response)
-  //     })
-  //     // clearThemeProgress()
-  //     getThemeProgress().then((response) => {
-  //       // storeThemeProgress(2,3,6)
-  //       setProgress(response.data)
-  //       console.log("got user profile: ")
-  //       console.log(response.data)
-  //     })
-  //   }
-
   return (
     <SafeAreaView style={[styles.screenContainer, {}]}>
       <View style={{ alignItems: "center", justifyContent: "center" }}>
-        <Text style={styles.headerText}>
+        <Text style={{
+          fontWeight: "bold",
+          textAlign: "left",
+          fontSize: 18,
+          alignItems: "center",
+          justifyContent: "center"
+        }}>
           {theme?.name}
         </Text>
 
-        <Text>
+        <Text style={{
+          fontWeight: "bold",
+          textAlign: "left",
+          fontSize: 24,
+          alignItems: "center",
+          justifyContent: "center",
+          alignSelf: "flex-start",
+          marginVertical: 20,
+          marginHorizontal: 20,
+        }}>
           Узнайте основные фразы
         </Text>
       </View>
       <DictionaryList theme={theme} />
+
+      <TouchableOpacity style={[styles.textButton, { marginHorizontal: 20, marginBottom: 40 }]}
+        onPress={() => {
+          navigation.navigate("Theme", {options: {theme: theme}})
+        }}>
+        <Text style={styles.textButtonText}>
+          Перейти к практике
+        </Text>
+      </TouchableOpacity>
 
     </SafeAreaView>
   );

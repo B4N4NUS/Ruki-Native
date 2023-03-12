@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { TextInput, Text, View, ScrollView, TouchableOpacity } from "react-native";
 import { getAllDictionaries, getAllTasks, getDictById } from "../../misc/TasksAndLessions";
+import DictionaryItem from "./DictionaryItem";
 import Hands from "./Hands";
 
 export default function DictionaryList({ theme }) {
@@ -17,14 +18,9 @@ export default function DictionaryList({ theme }) {
         }
     }, [theme])
 
-    return <ScrollView style={{ marginHorizontal:20}}>
+    return <ScrollView style={{ marginHorizontal:20}} showsVerticalScrollIndicator={false}>
         {dic && dic.map((item) =>
-            <TouchableOpacity style={{ flexDirection:"row", marginVertical:5,borderRadius:20, backgroundColor:'#f0f2f0', padding:30}}>
-                <Hands hands={item.hand}/>
-                <Text style={{alignSelf:"center"}}>
-                    {item.word}
-                </Text>
-            </TouchableOpacity>
+            <DictionaryItem hands={item.hand} words={item.word} key={item.word + item.hand}/>
         )}
     </ScrollView>
 }

@@ -74,15 +74,13 @@ const List = ({ searchPhrase, setClicked, data, navigation }) => {
   };
 
   return (
-    <SafeAreaView style={styles.list__container}>
-      <View>
+    <View style={styles.list__container}>
         <FlatList
           data={data}
           renderItem={renderItem}
           keyExtractor={(item) => item.id}
         />
-      </View>
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -90,9 +88,11 @@ export default List;
 
 const styles = StyleSheet.create({
   list__container: {
+    // backgroundColor:"red",
     // margin: 10,
-    height: "85%",
-    width: "100%",
+    // height: "100%",
+    // width: "100%",
+    marginBottom: 80,
   },
 
   title: {

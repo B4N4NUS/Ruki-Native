@@ -16,6 +16,9 @@ import PushAdd from '../screens/Settings/PushAdd';
 import RedactProfile from '../screens/Settings/RedactProfile';
 import ChangePassword from '../screens/Settings/ChangePassword';
 import Dictionary from '../screens/ThemesNTasks/Dictionary';
+import Theme from '../screens/ThemesNTasks/Theme';
+import Task from '../screens/ThemesNTasks/Task';
+import Congrads from '../screens/ThemesNTasks/Congrads';
 
 const Stack = createStackNavigator();
 
@@ -34,8 +37,9 @@ export default function RootNavigator() {
         <Stack.Screen name='OnBoarding' component={OnBoarding}/>
         <Stack.Screen name='Main' component={TabNavigator}/>
         <Stack.Screen name="Dictionary" component={Dictionary}/>
-        <Stack.Screen name="Theme" component={Welcome}/>
-        <Stack.Screen name="Task" component={Welcome}/>
+        <Stack.Screen name="Theme" component={Theme}/>
+        <Stack.Screen name="Task" component={Task}/>
+        <Stack.Screen name="Congrads" component={Congrads}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

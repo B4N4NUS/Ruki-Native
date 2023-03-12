@@ -25,7 +25,7 @@ export default function Browse({ route, navigation }) {
   }, []);
 
   return (
-    <SafeAreaView style={styles.screenContainer}>
+    <SafeAreaView style={[styles.screenContainer]}>
       <SearchBar
         searchPhrase={searchPhrase}
         setSearchPhrase={setSearchPhrase}
@@ -44,18 +44,4 @@ export default function Browse({ route, navigation }) {
     </SafeAreaView>
   );
 };
-
-const styless = StyleSheet.create({
-  root: {
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  title: {
-    width: "100%",
-    marginTop: 20,
-    fontSize: 25,
-    fontWeight: "bold",
-    marginLeft: "10%",
-  },
-});
 

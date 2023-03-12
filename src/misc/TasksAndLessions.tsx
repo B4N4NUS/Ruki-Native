@@ -1,7 +1,10 @@
 
+const additionString = "V1-"
+
+
 export const getAllThemes = async () => {
     const apiResponse = await fetch(
-        "http://ebreak.ru/Themes.json"
+        "http://ebreak.ru/"+additionString+"Themes.json"
     );
     if (apiResponse.ok) {
         const data = await apiResponse.json();
@@ -12,7 +15,7 @@ export const getAllThemes = async () => {
 
 export const getAllTasks = async () => {
     const apiResponse = await fetch(
-        "http://ebreak.ru/Tasks.json"
+        "http://ebreak.ru/"+additionString+"Tasks.json"
     );
     if (apiResponse.ok) {
         const data = await apiResponse.json();
@@ -23,7 +26,7 @@ export const getAllTasks = async () => {
 
 export const getAllDictionaries = async () => {
     const apiResponse = await fetch(
-        "http://ebreak.ru/Dictionaries.json"
+        "http://ebreak.ru/"+additionString+"Dictionaries.json"
     );
     if (apiResponse.ok) {
         const data = await apiResponse.json();
@@ -38,7 +41,7 @@ export const getDictById = async (id: number) => {
     //     return response.find((item) => item.id === id)
     // }).catch((e) => {return null})
     const apiResponse = await fetch(
-        "http://ebreak.ru/Dictionaries.json"
+        "http://ebreak.ru/"+additionString+"Dictionaries.json"
     );
     if (apiResponse.ok) {
         // console.log(apiResponse.body)
@@ -52,7 +55,7 @@ export const getDictById = async (id: number) => {
 
 export const getTaskById = async (id: number) => {
     const apiResponse = await fetch(
-        "http://ebreak.ru/Tasks.json"
+        "http://ebreak.ru/"+additionString+"Tasks.json"
     );
     if (apiResponse.ok) {
         const data = await apiResponse.json();
@@ -64,7 +67,7 @@ export const getTaskById = async (id: number) => {
 
 export const getThemesById = async (id: number) => {
     const apiResponse = await fetch(
-        "http://ebreak.ru/Themes.json"
+        "http://ebreak.ru/"+additionString+"Themes.json"
     );
     if (apiResponse.ok) {
         const data = await apiResponse.json();

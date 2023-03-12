@@ -21,9 +21,9 @@ export default function Welcome({ route, navigation }) {
                 navigation.navigate("Main").then(() => setLoading(false))
                 navigation.reset({
                     index: 0,
-                    routes: [{name: 'Main'}],
-                  })
-                
+                    routes: [{ name: 'Main' }],
+                })
+
             }).catch(() => { setLoading(false) })
         }).catch(() => { setLoading(false) })
     }, [])
@@ -41,7 +41,7 @@ export default function Welcome({ route, navigation }) {
                 </View>
             </View>}
             {!loading && <View style={{ flex: 0 }}>
-                <TouchableOpacity style={styles.textButton}
+                <TouchableOpacity style={[styles.textButton, { marginHorizontal: 20 }]}
                     onPress={() => {
                         navigation.navigate("Login")
                     }}
@@ -50,7 +50,7 @@ export default function Welcome({ route, navigation }) {
                         Войти
                     </Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={[styles.textButton, { marginBottom: 40, }]}
+                <TouchableOpacity style={[styles.textButton, { marginHorizontal: 20, marginBottom: 40, }]}
                     onPress={() => {
                         navigation.navigate("Register")
                     }}
@@ -60,7 +60,7 @@ export default function Welcome({ route, navigation }) {
                     </Text>
                 </TouchableOpacity>
             </View>}
-            {loading && <View style={{ flex: 1, justifyContent:"center", alignItems:"center" }}>
+            {loading && <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
                 <ActivityIndicator size={"large"} color={"black"} />
             </View>}
         </SafeAreaView>

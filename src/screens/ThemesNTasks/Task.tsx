@@ -12,7 +12,7 @@ import TranslateWtH from '../../components/Lession/Tasks/TranslateWtH';
 import WordTask from '../../components/Lession/Tasks/WordTask';
 import ProfileCard from '../../components/ProfileCard';
 import IProfile from '../../interfaces/IProfile';
-import { getProfile, getThemeProgress } from '../../misc/Firebase';
+import { getProfile, getThemeProgress, storeThemeProgress } from '../../misc/Firebase';
 import styles from '../../misc/Styles';
 
 export default function Task({ route, navigation }) {
@@ -30,10 +30,11 @@ export default function Task({ route, navigation }) {
     }, [])
 
     const giveNext = () => {
+        storeThemeProgress(theme.id, counter + 1, length)
         if (counter + 1 === tasks.length) {
             const popAction = StackActions.pop(1);
             navigation.dispatch(popAction);
-            navigation.navigate("Congrads", {options: {theme: theme}})
+            navigation.navigate("Congrads", { options: { theme: theme } })
             return
         }
         setCounter(counter + 1)
@@ -43,7 +44,12 @@ export default function Task({ route, navigation }) {
     return (
         <SafeAreaView style={[styles.screenContainer, {}]}>
             <View style={{ flexDirection: "row" }}>
+                <TouchableOpacity onPress={() => {
+                    const popAction = StackActions.pop(1);
+                    navigation.dispatch(popAction);
+                }}>
                 <ExitIcon width={50} height={50} />
+                </TouchableOpacity>
                 <View style={{
                     position: "relative",
                     borderRadius: 10,

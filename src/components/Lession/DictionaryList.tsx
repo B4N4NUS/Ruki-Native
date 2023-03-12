@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { TextInput, Text, View, ScrollView, TouchableOpacity } from "react-native";
 import { getAllDictionaries, getAllTasks, getDictById } from "../../misc/TasksAndLessions";
+import getRandomID from "../../misc/UUIDGenerator";
 import DictionaryItem from "./DictionaryItem";
 import Hands from "./Hands";
 
@@ -19,8 +20,8 @@ export default function DictionaryList({ theme }) {
     }, [theme])
 
     return <ScrollView style={{ marginHorizontal:20}} showsVerticalScrollIndicator={false}>
-        {dic && dic.map((item) =>
-            <DictionaryItem hands={item.hand} words={item.word} key={item.word + item.hand}/>
+        {dic && dic.map((item, i) =>
+            <DictionaryItem hands={item.hand} words={item.word} key={getRandomID()}/>
         )}
     </ScrollView>
 }

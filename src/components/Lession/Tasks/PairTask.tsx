@@ -81,6 +81,8 @@ export default function PairTask({ task, giveNext }) {
 
             </View>
 
+            <View style={{flex:1}}></View>
+
             <TouchableOpacity style={[styles.textButton, { marginHorizontal: 20, marginBottom: 80, alignSelf: "stretch" }]}
                 onPress={() => {
                     let flag = true

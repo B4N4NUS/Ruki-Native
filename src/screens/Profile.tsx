@@ -14,7 +14,7 @@ import { getAllTasks } from '../misc/TasksAndLessions';
 
 export default function Profile({ route, navigation }) {
   const [user, setUser] = React.useState<IProfile | null>(null)
-  const [progress, setProgress] = React.useState()
+  const [progress, setProgress] = React.useState(null)
 
   const isFocused = useIsFocused();
 

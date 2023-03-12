@@ -1,6 +1,6 @@
 import * as React from "react";
 import Svg, { G, Path } from "react-native-svg";
-const SVGComponent = (props) => (
+const WorkIcon = (props) => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
     style={{aspectRatio: "1/1"}}
@@ -78,4 +78,4 @@ const SVGComponent = (props) => (
     </G>
   </Svg>
 );
-export default SVGComponent;
+export default WorkIcon;

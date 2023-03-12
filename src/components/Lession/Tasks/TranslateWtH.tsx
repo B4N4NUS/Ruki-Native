@@ -4,6 +4,7 @@ import { View, Text, StyleSheet, Image, TouchableOpacity, SafeAreaView, Dimensio
 import { ScrollView } from 'react-native-gesture-handler';
 import { useToast } from 'react-native-toast-notifications';
 import styles from '../../../misc/Styles';
+import getRandomID from '../../../misc/UUIDGenerator';
 import Hands from '../Hands';
 
 export default function TranslateWtH({ task, giveNext }) {
@@ -68,7 +69,7 @@ export default function TranslateWtH({ task, giveNext }) {
                         if (selected !== null) {
                             handleClick(selected, i)
                         }
-                    }}>
+                    }} key={getRandomID()}>
                         {item !== null && <Hands hands={[task.variants[item]]} styless={{ justifyContent: "center", alignSelf: "center" }} />}
                     </TouchableOpacity>
                 )}

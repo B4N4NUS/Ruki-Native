@@ -14,7 +14,7 @@ import Achievement from './Achievement';
 const AchievementList = ({data}) => {
   return (
     <SafeAreaView style={{}}>
-      <Text style={styles.header}>Статистика</Text>
+      {<Text style={styles.header}>Статистика</Text>}
       <FlatList style={styles.list}
         data={data}
         numColumns={2}

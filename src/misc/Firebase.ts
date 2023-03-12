@@ -6,6 +6,7 @@ import { GoogleAuthProvider, signInWithPopup, signInWithRedirect } from "firebas
 import { getStorage, ref, uploadBytes } from "firebase/storage"
 
 import IProfile from '../interfaces/IProfile';
+import { getThemesById } from './TasksAndLessions';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -156,7 +157,7 @@ export const getThemeProgress = async () => {
         const docRef = doc(db, "progress", auth.currentUser.email)
         const docSnap = await getDoc(docRef)
         if (docSnap.exists()) {
-            console.log(docSnap.data().data)
+            // console.log(docSnap.data().data)
             return docSnap.data().data
         } else {
             console.log("No progress")
@@ -171,7 +172,9 @@ export const getThemeProgress = async () => {
 export const storeThemeProgress = async (id: number, progress: number, length: number) => {
     getThemeProgress().then((response) => {
         if (response.data.find((item) => item.id === id)) {
-            response.data[response.data.findIndex((item) => item.id === id)].progress = progress
+            if (response.data.find((item) => item.id === id).progress < progress) {
+                response.data[response.data.findIndex((item) => item.id === id)].progress = progress
+            }
         } else {
             response.data.push({ id: id, progress: progress, length: length })
         }
@@ -180,6 +183,33 @@ export const storeThemeProgress = async (id: number, progress: number, length: n
             data: response
         })
     })
+}
+
+export const storeLastVisitedTheme = async (id: number) => {
+    try {
+        const docRef = await setDoc(doc(db, "lastVisited", auth.currentUser.email), {
+            data: id
+        })
+        console.log("saved last visit: " + id)
+    } catch (e) {
+        alert(e.message)
+    }
+}
+
+export const GetLastVisitedTheme = async () => {
+    try {
+        const docRef = doc(db, "lastVisited", auth.currentUser.email)
+        const docSnap = await getDoc(docRef)
+        if (docSnap.exists()) {
+            console.log(docSnap.data().data)
+            return await getThemesById(docSnap.data().data)
+        } else {
+            console.log("no lastVisited")
+            return null 
+        }
+    } catch (e) {
+        alert(e.message)
+    }
 }
 
 export const clearThemeProgress = async (id: number, progress: number, length: number) => {

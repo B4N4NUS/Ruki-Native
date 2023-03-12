@@ -3,9 +3,9 @@ import * as React from 'react';
 import { TouchableOpacity, ScrollView } from "react-native";
 import LoginPic from "../../assets/pics/login";
 import StartPic from "../../assets/pics/start";
-import WorkIcon from "../../assets/pics/work";
 import GlobalIcon from "../../assets/pics/global";
 import styles from "../../misc/Styles";
+import WorkIcon from "../../assets/pics/work";
 
 export default function OnBoarding({ route, navigation }) {
     const images = [<StartPic width="80%" />,

@@ -1,5 +1,5 @@
 
-const additionString = "V1-"
+const additionString = "V2-"
 
 
 export const getAllThemes = async () => {

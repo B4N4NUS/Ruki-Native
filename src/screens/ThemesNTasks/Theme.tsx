@@ -1,32 +1,37 @@
 import { useFocusEffect, useIsFocused } from '@react-navigation/native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, SafeAreaView, Dimensions } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import SettingsIcon from '../../assets/icons/settings';
 import AchievementList from '../../components/AchievementList';
 import ProfileCard from '../../components/ProfileCard';
 import IProfile from '../../interfaces/IProfile';
-import { getProfile, getThemeProgress } from '../../misc/Firebase';
+import { getProfile, getThemeProgress, storeLastVisitedTheme } from '../../misc/Firebase';
 import styles from '../../misc/Styles';
 import { getTaskById } from '../../misc/TasksAndLessions';
+import getRandomID from '../../misc/UUIDGenerator';
 
 export default function Theme({ route, navigation }) {
   const [theme, setTheme] = React.useState(null)
   const [path, setPath] = React.useState(null)
   const [line, setLine] = React.useState(null)
   const [mHeight, setmHeight] = React.useState(300)
+  const [mWidth, setmWidth] = React.useState(0)
   const { options } = route.params
   const [tasks, setTasks] = React.useState(null)
+  const [progress, setProgress] = React.useState(0)
   var math = require('random-seed').create("12");
-
-
+  var widthPart = Math.floor(Dimensions.get("window").width / 5)
+  const isFocused = useIsFocused()
 
   React.useEffect(() => {
-    console.log("length: " + options.theme.subtaskIds.length)
+    storeLastVisitedTheme(options.theme.id)
+    // console.log("length: " + options.theme.subtaskIds.length)
     setTheme(options.theme)
+    // setProgress(options.progress)
     math = require('random-seed').create(options.theme.subtaskIds.length + 2);
     // console.log(math.random())
-    let widthPart = Math.floor(Dimensions.get("window").width / 5)
+
     let ss = [{ top: 0, left: widthPart }]
     for (let i = 1; i < options.theme.subtaskIds.length; i++) {
       let rnd = 0
@@ -34,9 +39,17 @@ export default function Theme({ route, navigation }) {
         if (ss[i - 1].left !== widthPart) {
           rnd = Math.floor(math.random() * 10) % 3
         }
-        rnd = Math.floor(math.random() * 10) % 2
+        if (i > 1 && ss[i - 1].top !== ss[i - 2].top) {
+          rnd = Math.floor(math.random() * 10) % 2
+        } else {
+          rnd = 0
+        }
       } else {
-        rnd = Math.floor(math.random() * 10) % 2 * 2
+        if (i > 1 && ss[i - 1].top !== ss[i - 2].top) {
+          rnd = Math.floor(math.random() * 10) % 2 * 2
+        } else {
+          rnd = 0
+        }
       }
       switch (rnd) {
         case 0: {
@@ -54,6 +67,9 @@ export default function Theme({ route, navigation }) {
       }
       if (mHeight < ss[i].top) {
         setmHeight(ss[i].top)
+      }
+      if (mWidth < ss[i].left) {
+        setmWidth(ss[i].left)
       }
     }
     // console.log(ss)
@@ -76,21 +92,48 @@ export default function Theme({ route, navigation }) {
     //   "http://ebreak.ru/Themes.json"
     // ).then((resp) => resp.json().then((r) => console.log(r.themes)))
 
-    
+
     getAllTasks()
   }, [])
 
 
-  const getAllTasks = async() => {
+
+
+
+
+  useEffect(() => {
+    if (theme) {
+      console.log("progress: ")
+      getThemeProgress().then((response) => {
+        console.log(response)
+        let a = response.data.find(item => item.id === theme.id)
+        console.log(a)
+        if (response.data.find(item => item.id === theme?.id)) {
+          setProgress(response.data.find(item => item.id === theme?.id).progress)
+        } else {
+          setProgress(0)
+        }
+      }).catch((e) => alert(e.message))
+    }
+  }, [isFocused, theme])
+
+
+  const getRealPos = (num) => {
+    return num / widthPart * Math.floor(Dimensions.get("window").width / (mWidth / widthPart + 1))
+  }
+
+
+
+  const getAllTasks = async () => {
     let bb = []
-    for(let i = 0; i < options.theme.subtaskIds.length; i++) {
+    for (let i = 0; i < options.theme.subtaskIds.length; i++) {
       bb.push(await getTaskById(options.theme.subtaskIds[i]))
     }
     setTasks(bb)
   }
 
   return (
-    <SafeAreaView style={[styles.screenContainer, {}]}>
+    <SafeAreaView style={[styles.screenContainer, { display: "flex" }]}>
       <View style={[styles.headerContainer, { flexDirection: "column" }]}>
         <Text style={styles.headerText}>
           {theme?.name}
@@ -101,36 +144,45 @@ export default function Theme({ route, navigation }) {
         <View style={{ flex: 1 }} />
       </View>
 
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={{ position: "relative", height: mHeight }}>
-          {line?.map((item, i) => <View style={{
-            position: "absolute",
-            top: item.top,
-            left: item.left,
-            backgroundColor: "black",
-            height: item.height === 0 ? 3 : item.height,
-            width: item.width === 0 ? 3 : item.width,
-          }}>
-          </View>)}
-          {path && theme?.subtaskIds.map((item, i) => <TouchableOpacity style={{
-            position: "absolute",
-            top: path[i].top,
-            left: path[i].left - 25,
-            borderRadius: 50,
-            backgroundColor: "black",
-            height: 50,
-            aspectRatio: 1,
-            justifyContent: 'center',
-            zIndex: 10,
-          }}onPress={() => {
-            navigation.navigate("Task", {options: {tasks: tasks, theme: theme, start: i}})
-          }}>
-            <Text style={{ alignSelf: "center", color: "white", fontSize: 20 }}>
+      <View style={{ flex: 1}} />
+      {/* <ScrollView showsVerticalScrollIndicator={false} style={{ }}>
+        <View style={{ flex: 1, height: "100%"  }} >
+          <View style={{ flex: 1, backgroundColor:"cyan", height:200 }} /> */}
+      <View style={{ position: "relative", height: mHeight}}>
+        {line?.map((item, i) => <View style={{
+          position: "absolute",
+          top: item.top + 1,
+          left: getRealPos(item.left) - 2,
+          backgroundColor: "black",
+          height: item.height === 0 ? 3 : item.height,
+          width: item.width === 0 ? 3 : getRealPos(item.width),
+
+        }} key={getRandomID()}>
+        </View>)}
+        {path && theme?.subtaskIds.map((item, i) => <View style={{
+          position: "absolute",
+          top: path[i].top,
+          left: getRealPos(path[i].left) - 25,
+          borderRadius: 50,
+          backgroundColor: i > progress ? "white" : "black",
+          height: 50,
+          borderWidth: 1,
+          aspectRatio: 1,
+          justifyContent: 'center',
+          zIndex: 10,
+        }} key={getRandomID()}>
+          <TouchableOpacity onPress={() => {
+            navigation.navigate("Task", { options: { tasks: tasks, theme: theme, start: i } })
+          }} disabled={i > progress}>
+            <Text style={{ alignSelf: "center", color: i > progress ? "black" : "white", fontSize: 20 }}>
               {i + 1}
             </Text>
-          </TouchableOpacity>)}
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+          </TouchableOpacity>
+        </View>)}
+      </View>
+      <View style={{ flex: 1}} /> 
+      {/* </View>
+      </ScrollView> */}
+    </SafeAreaView >
   );
 };

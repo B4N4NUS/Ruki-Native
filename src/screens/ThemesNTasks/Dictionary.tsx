@@ -48,7 +48,7 @@ export default function Dictionary({ route, navigation }) {
 
       <TouchableOpacity style={[styles.textButton, { marginHorizontal: 20, marginBottom: 40 }]}
         onPress={() => {
-          navigation.navigate("Theme", {options: {theme: theme}})
+          navigation.navigate("Theme", {options: options})
         }}>
         <Text style={styles.textButtonText}>
           Перейти к практике

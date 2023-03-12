@@ -1,4 +1,5 @@
 // Home.js
+import { useIsFocused } from "@react-navigation/native";
 import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
@@ -14,15 +15,16 @@ import { getAllThemes } from "../misc/TasksAndLessions";
 export default function Browse({ route, navigation }) {
   const [searchPhrase, setSearchPhrase] = useState("");
   const [clicked, setClicked] = useState(false);
-  const [fakeData, setFakeData] = useState();
+  const [data, setData] = useState();
 
-  // get data from the fake api endpoint
+  const isFocused = useIsFocused();
+
   useEffect(() => {
     getAllThemes().then((response) => {
-      setFakeData(response)
+      setData(response)
       console.log(response)
     })
-  }, []);
+  }, [isFocused]);
 
   return (
     <SafeAreaView style={[styles.screenContainer]}>
@@ -36,7 +38,7 @@ export default function Browse({ route, navigation }) {
 
         <List
           searchPhrase={searchPhrase}
-          data={fakeData}
+          data={data}
           setClicked={setClicked} 
           navigation={navigation}/>
 

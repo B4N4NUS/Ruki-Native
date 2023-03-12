@@ -18,8 +18,9 @@ export default function DictionaryItem({ hands, words }) {
         onPress={() => {
             setTranslate(!translate)
         }}>
-        <Hands hands={hands} styless={{alignSelf: "center" , justifyContent: translate? "flex-start": "center"}} />
-        {translate && <Text style={{ alignSelf: "center",  fontWeight: 'bold', fontSize:18}}>
+        <Hands hands={hands} styless={{alignSelf: "center" , flex:1, justifyContent: translate? "flex-start": "center"}} />
+        {translate && <View style={{flex:1}}/>}
+        {translate &&<Text style={{ flex:1,alignSelf: "center",  fontWeight: 'bold', fontSize:17}}>
             {words}
         </Text> }
     </TouchableOpacity>

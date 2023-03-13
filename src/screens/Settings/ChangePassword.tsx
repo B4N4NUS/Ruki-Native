@@ -5,7 +5,7 @@ import { FancyTextInput } from "../../components/FancyTextInput";
 import IProfile from "../../interfaces/IProfile";
 // import { auth, getProfile, storeProfile } from "../../misc/Firebase";
 import { getAsyncStorageLoginPass, storeAsyncStorageLoginPass } from "../../misc/AsyncStorage";
-import firebase from "firebase/compat";
+import firebase from "firebase/compat/app";
 import { StackActions } from "@react-navigation/native";
 import { useToast } from "react-native-toast-notifications";
 
